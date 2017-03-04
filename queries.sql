@@ -10,5 +10,5 @@ lang varchar(10) NOT NULL,
 PRIMARY KEY (ID)
 );
 
- ALTER TABLE login AUTO_INCREMENT=1000; 
-INSERT INTO login (tname,cname,email,mno,pass,lang) VALUES('ATM','TKM','name@gmail','7560881699','banana','cpp');
+ ALTER TABLE team AUTO_INCREMENT=1000; 
+INSERT INTO team (tname,cname,email,mno,pass,lang) VALUES('ATM','TKM','name@gmail','7560881699','banana','cpp');
