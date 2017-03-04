@@ -3,7 +3,7 @@
 <script src="./js/sign.js" type="text/javascript"></script>
 </head>
 
-<form name="register" method="post" action="">
+<form name="register" method="post" action="./signingup.php">
 	<table border="0" width="500" align="center" class="demo-table">
 		<tr><td>Team name</td>
 		<td><input type="text" class="demoInputBox" name="teamName" value=""></td>

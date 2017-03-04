@@ -1,1 +1,2 @@
-<a href="./signup">sign</a>
+<a href="./signup.php">sign</a>
+<a href="./login.php">login</a>
