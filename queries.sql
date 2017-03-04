@@ -1,4 +1,4 @@
-CREATE TABLE login
+CREATE TABLE team
 (
 id int NOT NULL AUTO_INCREMENT,
 tname varchar(255) NOT NULL,
