@@ -8,30 +8,10 @@ import java.sql.*;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import conur.connekt.*;
 
 public class mn extends javax.swing.JFrame {
-public static Connection con;
-public static  Statement stmt;
-public static PreparedStatement pstmt;
-      public static void  conn()
-    {
-        try{  
-    Class.forName("com.mysql.jdbc.Driver");  
-            //here sonoo is database name, root is username and password
-        con = DriverManager.getConnection(  
-                    "jdbc:mysql://localhost:3306/u1","root","1234"); {
-                //here sonoo is database name, root is username and password
-                 stmt=con.createStatement(); 
-                 
-        
-               /* ResultSet rs=stmt.executeQuery("select * from testcase");
-                while(rs.next())
-                    System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-         */   }
-}catch( ClassNotFoundException | SQLException e){ System.out.println(e+"not there");}  
 
-    }
 /**
  *
  * @author root
@@ -160,7 +140,7 @@ public static PreparedStatement pstmt;
         // TODO add your handling code here:
           try {
         // TODO add your handling code here:
-      
+      connekt.conn();
          int l = level.getSelectedIndex()+1;
         int q = qnum.getSelectedIndex()+1;
         int tno =tnum.getSelectedIndex()+1;
@@ -184,13 +164,13 @@ public static PreparedStatement pstmt;
                   //Create PreparedStatement and stream data
                   FileInputStream fis2 = new FileInputStream("t"+l+"q"+q+"test"+tno+".txt");
                   String SQL ="INSERT INTO testcase (tlevel,qno,ncase,tinput,toutput) values(?,?,?,?,?)";
-                  pstmt = con.prepareStatement(SQL);
-                  pstmt.setInt(1,l);
-                  pstmt.setInt(2,q);
-                     pstmt.setInt(3,tno);
-                  pstmt.setAsciiStream(5,fis,(int)fileLength1);
-                  pstmt.setAsciiStream(4,fis2,(int)fileLength2);
-                  pstmt.execute();
+                  connekt.pstmt = connekt.con.prepareStatement(SQL);
+                   connekt.pstmt.setInt(1,l);
+                   connekt.pstmt.setInt(2,q);
+                      connekt.pstmt.setInt(3,tno);
+                   connekt.pstmt.setAsciiStream(5,fis,(int)fileLength1);
+                   connekt.pstmt.setAsciiStream(4,fis2,(int)fileLength2);
+                   connekt.pstmt.execute();
                   //Close input stream
               }
     
@@ -232,7 +212,7 @@ public static PreparedStatement pstmt;
                 new mn().setVisible(true);
             }
         });
-      conn();
+       connekt.conn();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
