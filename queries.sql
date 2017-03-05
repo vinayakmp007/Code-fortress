@@ -30,12 +30,49 @@ qno    int NOT NULL,
 ncase int NOT NULL,
 tinput BLOB NOT NULL,
 toutput BLOB NOT NULL,
-PRIMARY KEY (testid)
+PRIMARY KEY (tlevel,qno,ncase)
 );
+
+CREATE TABLE levelcontrol
+(
+controlid int NOT NULL AUTO_INCREMENT UNIQUE,
+levels  int NOT NULL ,
+status    int NOT NULL,
+PRIMARY KEY (levels)
+);
+
+/*status 
+
+00  disabled
+01  enabled
+
+
+
+*/
+
+
+
+CREATE TABLE pagecontrol
+(
+controlid int NOT NULL AUTO_INCREMENT UNIQUE,
+page  varchar(40) NOT NULL ,
+status    int NOT NULL,
+PRIMARY KEY (levels)
+);
+
+
 ALTER TABLE testcase AUTO_INCREMENT=5000;
 
 
 INSERT INTO testcase (tlevel,qno,tinput,toutput) values(1,1,'aaaaa','bbbb');
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '1234' WITH GRANT OPTION;
+
+
+
+
+
+
+
+
 
