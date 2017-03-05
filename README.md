@@ -1,2 +1,2 @@
-# event-management-fest
-Can be used for management of events and participation
+# coding contest managing server
+Can be used for management of coding events

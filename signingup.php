@@ -43,7 +43,7 @@ if(! $retval )
 
 }
 }
-header ( "Location: index.php" ) && die ();
+header ( "Location: index.php" ) && die ();                         //redirect to index 
 
 ?>
 

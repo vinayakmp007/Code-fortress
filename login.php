@@ -2,18 +2,61 @@
 <head>
 </head>
 <body>
-	<div id="form-signin-container">
-		<form id="form-signin" class="box" action="./loging.php" method="POST">
-			<h2 id="form-signin-heading">Please Sign In</h2>
-			<div class="input-group" style="padding: 10px 0 10px 0;">
-				<span class="input-group-addon">Team name</span> <input class="form-control" name="teamname"
-					id="teamname" type="text" placeholder="Team ID">
-			</div>
-			<input type="password" id="password" name="password"
-				class="form-control" placeholder="Password" style="margin-bottom: 10px;">
-				<br>
-			<button class="btn btn-large btn-primary centerh"
-				style="width: 100px;" id="btn-login" type="submit" name="submit" value="submit">Sign in</button>
-		</form>
-	</div>
+
+<?php 
+session_start(); 
+if(!isset($_SESSION['teamid'])||!isset($_SESSION['password'])){
+
+echo '	
+        <script src="./js/sign.js" type="text/javascript"></script>
+        <script src="./js/jqmin.js" type="text/javascript"></script>
+         <script src="./js/login.js" type="text/javascript"></script>
+          
+         
+        <div id="box">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    <div class="form-top">
+                        <div class="form-top-left">
+                            <h3>Log-in</h3>
+                            <span id="error" class="error"></span>
+                        </div>
+                        <div class="form-top-right">
+                            <i class="fa fa-key"></i>
+                        </div>
+                    </div>
+                    <div id="box" class="form-bottom">
+                        <form class="login-form" action="" method="post"  name="login-form">
+                            <div class="form-group">
+                                <label class="sr-only" for="teamname">Teamname</label>
+                                <input type="text" name="teamname" placeholder="Teamname..." class="form-username form-control" id="teamname">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="password">Password</label>
+                                <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+                            </div>
+                            <input type="submit" id="login" class="btn" style="width:100%;background-color:lightblue;" value="Login" name="login"  id="login"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+	<script  type="text/javascript">
+var frmvalidator = new Validator("login-form");
+frmvalidator.EnableOnPageErrorDisplaySingleBox();
+frmvalidator.EnableMsgsTogether();
+
+
+
+frmvalidator.addValidation("teamname","req","Please enter your Team Name");
+frmvalidator.addValidation("teamname","maxlen=20","Max length for Team is 20");
+frmvalidator.addValidation("password","req","Please enter your password");
+frmvalidator.addValidation("password","maxlen=40","max password length");
+	</script>
+	';
+	}
+	
+else echo 'already logged in';                                             //already logged in
+?>
 </body>
