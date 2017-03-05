@@ -1,0 +1,48 @@
+.topUl li{
+	color: #F44336;
+    font-weight: 600;
+	text-decoration: none;
+}
+
+.bottomUl li{
+	color: #F44336;
+	margin-left: 15px;
+    font-weight: 400;
+	text-decoration: none;
+}
+
+.bottomUl {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+li.unused {
+	color: #ccc;
+}
+
+.topUl li:hover {
+	text-decoration: underline;
+	color: #F44336;
+    font-weight: 600;	
+}
+
+.bottomUl li:hover {
+	text-decoration: underline;
+	color: #F44336;
+    font-weight: 500;	
+}
+
+li.active {
+	text-decoration: underline;
+}
+
+.well {
+	height: 50px;
+    background-color: #FAFAFA;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 25px;
+    padding: 5px 0px;
+    color: #9CCC65;
+}
