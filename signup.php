@@ -42,16 +42,17 @@
 var frmvalidator = new Validator("register");
 //frmvalidator.EnableOnPageErrorDisplaySingleBox();
 frmvalidator.EnableMsgsTogether();
+frmvalidator.addValidation("password","req","password is required");
+frmvalidator.addValidation("password","maxlen=40","password cannot exceed 11");
 frmvalidator.addValidation("cpassword","eqelmnt=password","The confirmed password is not same as password");
-
 
 frmvalidator.addValidation("teamName","req","Please enter your Team Name");
 frmvalidator.addValidation("teamName","maxlen=20","Max length for Team is 20");
 frmvalidator.addValidation("collegeName","req","Please enter your college name");
-frmvalidator.addValidation("userEmail","maxlen=50");
+frmvalidator.addValidation("userEmail","maxlen=40","emailid cannot exceed 40");
 frmvalidator.addValidation("userEmail","req","Please enter your email  id");
 frmvalidator.addValidation("userEmail","email","Please enter a valid emailid");
-frmvalidator.addValidation("pNumber","maxlen=50");
+frmvalidator.addValidation("pNumber","maxlen=10");
 frmvalidator.addValidation("pNumber","numeric","Please enter valid number");
 frmvalidator.addValidation("Terms","dontselectchk=y","Please select an option from 'Agree to Terms'");
 

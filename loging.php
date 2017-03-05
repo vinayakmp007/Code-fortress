@@ -1,23 +1,28 @@
 <?php
 
-
-
-
-if(isset($_POST['submit'])){
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once ("include/mysq.php");                           //conatins connection information
 require_once ("include/func.php");
+
+
+session_start(); 
+if(!isset($_SESSION['teamid'])||!isset($_SESSION['password'])){
+if(isset($_POST['submit'])){
+
 $tname =$_POST['teamname'] ;
 $password=$_POST['password'];
 
 $tname=test_input($tname);
 $password=test_input($password);                                   //can be avoided
-echo $tname;
-$sql="SELECT id,pass from team where tname='".$tname."'";
 
 
-echo $sql;
+
+
+$sql="SELECT id,pass,lang from team where tname='".$tname."' and pass='".$password."'";
+
+
+
 $retval =mysqli_query($conn, $sql);
 if(! $retval )
 {
@@ -30,7 +35,19 @@ else{
 if(mysqli_num_rows($retval)==1){
 
 
+
+ while($row = mysqli_fetch_assoc($retval)) {
+       
+$_SESSION ['teamname'] = $tname;
+$_SESSION ['status'] = 'OK';
+$_SESSION ['password'] = $row['pass'];
+$_SESSION ['teamid'] = $row ['id'];
+$_SESSION ['lang'] = $row ['lang'];
+
+
 die('YES');
+}
+
 
 
 }
@@ -39,12 +56,21 @@ die('YES');
 else 
 {
 
-die('NO');}
+die('NO');
+}
 
 
 
 }
 
+
+}
+else echo 'INV';
+}
+
+else {
+//print_r($_SESSION);
+echo 'AL';                                                             //alreadt logged in
 
 }
 ?>
