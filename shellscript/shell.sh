@@ -9,9 +9,10 @@ for m in $inlist
 do
 #echo $pro;
 echo "./$pro <$input$m >$out$m";
-#rm $out$m;
-#./$pro <$input$m >$out$m & PID=$!;
+rm $out$m;
+#$pro <$input$m >$out$m & PID=$!;
 #sleep 5;
 #kill -HUP $PID
+timeout 2 $pro <$input$m >$out$m ;
 done
 

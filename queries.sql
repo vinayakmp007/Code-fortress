@@ -7,6 +7,7 @@ email varchar(40) NOT NULL UNIQUE,
 mno varchar(12) NOT NULL UNIQUE,
 pass varchar(12) NOT NULL UNIQUE,
 lang varchar(10) NOT NULL,
+status int NOT NULL,
 PRIMARY KEY (ID)
 );
 
@@ -22,6 +23,38 @@ BEGIN
 		
 >>>>>>> 1ab6e6e3b8d934535d5d53337e0cb425eb847ca1
 
+
+
+
+
+CREATE TABLE questions
+(
+testid int NOT NULL AUTO_INCREMENT UNIQUE,
+tlevel  int NOT NULL ,
+qno    int NOT NULL,
+quest BLOB NOT NULL,
+dvalues BLOB ,
+maxscore int NOT NULL,
+PRIMARY KEY (tlevel,qno)
+);
+
+
+CREATE TABLE correct
+(
+subid int NOT NULL AUTO_INCREMENT UNIQUE,
+tlevel  int NOT NULL,
+qno    int NOT NULL,
+teamid   int NOT NULL,
+status int,
+time int(12) NOT NULL,
+PRIMARY KEY (tlevel,qno)
+);
+
+
+
+
+
+
 CREATE TABLE testcase
 (
 testid int NOT NULL AUTO_INCREMENT UNIQUE,
@@ -35,9 +68,10 @@ PRIMARY KEY (tlevel,qno,ncase)
 
 CREATE TABLE levelcontrol
 (
-controlid int NOT NULL AUTO_INCREMENT UNIQUE,
-levels  int NOT NULL ,
+pcontrolid int NOT NULL AUTO_INCREMENT UNIQUE,
+levels  int NOT NULL UNIQUE,
 status    int NOT NULL,
+totaltime int(12),
 PRIMARY KEY (levels)
 );
 
@@ -54,11 +88,28 @@ PRIMARY KEY (levels)
 
 CREATE TABLE pagecontrol
 (
-controlid int NOT NULL AUTO_INCREMENT UNIQUE,
-page  varchar(40) NOT NULL ,
-status    int NOT NULL,
-PRIMARY KEY (levels)
+lcontrolid int NOT NULL AUTO_INCREMENT UNIQUE,
+page  varchar(40) NOT NULL UNIQUE,
+status   int NOT NULL,
+PRIMARY KEY (page)
 );
+
+
+
+
+CREATE TABLE sublog
+(
+sublogid int NOT NULL AUTO_INCREMENT UNIQUE,
+tlevel  int NOT NULL,
+qno    int NOT NULL,
+teamid   int NOT NULL,
+dat BLOB,
+time int(12) NOT NULL,
+PRIMARY KEY (subid)
+);
+
+
+
 
 
 ALTER TABLE testcase AUTO_INCREMENT=5000;

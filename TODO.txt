@@ -1,0 +1,3 @@
+sync inside to sync code from brosewr to server.
+change front end 
+
