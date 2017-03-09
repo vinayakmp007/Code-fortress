@@ -8,8 +8,8 @@ inlist=$(ls $input);
 for m in $inlist
 do
 #echo $pro;
-echo "./$pro <$input$m >$out$m";
-rm $out$m;
+#echo "./$pro <$input$m >$out$m";
+rm -f $out$m;
 #$pro <$input$m >$out$m & PID=$!;
 #sleep 5;
 #kill -HUP $PID

@@ -47,11 +47,15 @@ qno    int NOT NULL,
 teamid   int NOT NULL,
 status int,
 time int(12) NOT NULL,
+code BLOB,
 PRIMARY KEY (tlevel,qno)
 );
 
+/*compiled 1
+executed succesfully 2
+error or not submitted 0
 
-
+*/
 
 
 
