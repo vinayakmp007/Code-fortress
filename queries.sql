@@ -105,7 +105,7 @@ qno    int NOT NULL,
 teamid   int NOT NULL,
 dat BLOB,
 time int(12) NOT NULL,
-PRIMARY KEY (subid)
+PRIMARY KEY (sublogid)
 );
 
 
