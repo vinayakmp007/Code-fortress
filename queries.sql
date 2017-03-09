@@ -5,7 +5,7 @@ tname varchar(255) NOT NULL UNIQUE,
 cname varchar(255) NOT NULL,
 email varchar(40) NOT NULL UNIQUE,
 mno varchar(12) NOT NULL UNIQUE,
-pass varchar(12) NOT NULL UNIQUE,
+pass varchar(12) NOT NULL ,
 lang varchar(10) NOT NULL,
 status int NOT NULL,
 PRIMARY KEY (ID)
