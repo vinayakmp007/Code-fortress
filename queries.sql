@@ -196,3 +196,19 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '1234' WITH GRAN
 
 INSERT INTO questions (tlevel,qno,quest,dvalues,maxscore) values(2,3,"252525dgsds","5325",56);
 
+
+
+INSERT INTO `answers` (teamid, stageid, questionid, ans,time) VALUES('{$_SESSION['teamid']}', '{$_SESSION['stage']}', '{$_SESSION['questionid']}', '" . $mysqli->real_escape_string ( $_POST ['ans'] ) . "','{$t}')
+	ON DUPLICATE KEY UPDATE teamid = VALUES(teamid), stageid = VALUES(stageid), questionid = VALUES(questionid), ans = VALUES(ans), time = VALUES(time)" );
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
