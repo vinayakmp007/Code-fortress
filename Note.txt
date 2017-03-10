@@ -1,0 +1,2 @@
+var x = $('.active').attr('level');
+var y = $('.active').attr('round');
