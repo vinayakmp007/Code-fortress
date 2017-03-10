@@ -23,7 +23,7 @@ $time=$_POST['time'];
 $level=$_POST['level'];
 $team=$_SESSION['teamid'];
 $lan=$_SESSION['lang'];
-
+$time=0;                                                        //TODO remove this
 $ext="";
 
 if($lan=='C'){
@@ -56,12 +56,12 @@ $status=0;                                           //error status
 
 $compiler=$compiler." ".$progcode." -w -o ".$progout;
 //echo $compiler;
-unset($ret);
+unset($reterr);
 #$ret=shell_exec();
 $reterr=shell_exec("chmod 777 -R ".$prog);
 $reterr=shell_exec($compiler." 2>&1");                                                  //error to stdout
 
-if(empty($ret)){                                                                  //succesful compilation
+if(empty($reterr)){                                                                  //succesful compilation
 
 $status=1;
 
@@ -75,6 +75,10 @@ $reterr3=shell_exec($runscript2." ".$testcase."/".$level."/".$qstno." ".$prog." 
 
 if($reterr3==0){                                                                              //all ouput test case passed
 $status=2;
+
+$qry="insert into correct";
+
+
 
                                             //TODO: insert into correct table
 

@@ -38,7 +38,7 @@ maxscore int NOT NULL,
 PRIMARY KEY (tlevel,qno)
 );
 
-
+//correct table contains correct submissions
 CREATE TABLE correct
 (
 subid int NOT NULL AUTO_INCREMENT UNIQUE,
