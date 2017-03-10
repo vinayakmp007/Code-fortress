@@ -76,22 +76,22 @@ header {
 
 
 
-.topUl li{
+.topli {
 	color: #F44336;
     font-weight: 600;
 	text-decoration: none;
 }
 
-.bottomUl li{
+.bottomli {
 	color: #F44336;
 	margin-left: 15px;
     font-weight: 400;
 	text-decoration: none;
 }
 
-.bottomUl {
-	margin-top: 5px;
-	margin-bottom: 10px;
+.topli {
+	margin-bottom: 5px;
+	margin-top: 10px;
 }
 
 li.unused {
