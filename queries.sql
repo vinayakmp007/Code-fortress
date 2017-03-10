@@ -145,6 +145,30 @@ PRIMARY KEY (tlevel,qno,ncases)
 
 
 
+/*   to record the starting time of levels */
+
+CREATE TABLE  levelstart
+( 
+logid int NOT NULL AUTO_INCREMENT UNIQUE, 
+tlevel  int NOT NULL , 
+teamid int NOT NULL,
+startt int NOT NULL,
+PRIMARY KEY (teamid,tlevel) 
+); 
+
+/* to enable and disable level*/
+CREATE TABLE levels
+( 
+tlevel  int NOT NULL UNIQUE , 
+qstns int NOT NULL,
+status int NOT NULL,
+type varchar(20),
+totaltime int NOT NULL;
+PRIMARY KEY (tlevel) 
+); 
+
+/*no of question of this level can be obtained from questions table
+*/
 
 
 

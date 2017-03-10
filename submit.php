@@ -87,7 +87,7 @@ $status=2;
 $qry="insert into correct(tlevel,qno,teamid,status,lang,time,code) values($level,$qstno,$team,$status,'$lan',$time,'{$code}')";           //check wheither already submitted
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
-if(! $ret3 )
+if(! $ret3 )                                                      //unable to insert
 {
 
 
@@ -95,11 +95,31 @@ $qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team"
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(mysqli_num_rows($ret3)==1)$status= 10;                                         
-else  die('ERR');                                      //TODO might be due do resubmmision
+else  die('ERR');                                      
 }
 
+$qry="select type from levels where tlevel=$level";                                                              //TODO add condiyionf for debugging round                                                
+$ret3 =mysqli_query($conn, $qry);
+if(mysqli_num_rows($ret3)==1){                         //compare with original code
 
-                                        
+$row = mysqli_fetch_assoc($ret3);
+if($row['type']=='debug'){
+
+
+$qry="select dvalues from questions where tlevel=$level and qno=$qstno"; 
+$ret3 =mysqli_query($conn, $qry);
+if(mysqli_num_rows($ret3)==1){
+$row = mysqli_fetch_assoc($ret3);
+$dat=$row['dvalues'];
+
+
+}
+
+else  die('ERR:multiple questions'); 
+}
+//                                         put else here for 'coding'
+}                                        
+else  die('ERR'); 
 
 }
 //echo $runscript2." ".$testcase."/".$level."/".$qstno." ".$prog."/".$level."/".$qstno;
