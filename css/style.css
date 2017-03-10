@@ -1,3 +1,81 @@
+header {
+    position: fixed;
+    width: 100%;
+    height: 150px;
+    top: 0px;
+    left: 0px;
+    z-index: 1500;
+    overflow: hidden;
+}
+
+.style-3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.style-3::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+.style-3::-webkit-scrollbar-thumb
+{
+	background-color: #bdbdbd;
+}
+
+.codeFortressTimer {
+    position: fixed;
+    top: 0px;
+    left: 38%;
+    padding-top: 10px;
+}
+
+.codeFortressTitle {
+	position: relative;
+}
+
+.QnAnswer {
+	width: 75%;
+	float: left;
+}
+
+.rigSideBar {
+	width: 25%;
+	float: left;
+}
+
+.routeMap {
+	width: 25%;
+	float: left;
+}
+
+.contentBar {
+	width: 75%;
+	float: left;
+}
+
+.conjuraLogo {
+	width: 150px;
+	float: left;
+}
+
+.OtherSection {
+    position: relative;
+    top: 150px;
+}
+
+.timerPart {
+    position: fixed;
+    top: -10px;
+    right: 10px;	
+}
+
+
+
+
+
 .topUl li{
 	color: #F44336;
     font-weight: 600;
@@ -48,20 +126,21 @@ li.active {
 }
 
 li.disabled {
-	color: #eee;
-    font-weight: 500;
+	color: #bdbdbd;
+    font-weight: 300;
     cursor: default;
 }
 
 li.disabled:hover {
-	color: #eee;
-    font-weight: 500;
+	text-decoration: none;
+	color: #bdbdbd;
+    font-weight: 300;
 }
 
 .well {
 	height: 50px;
     background-color: #FAFAFA;
-    margin-top: 15px;
+    margin: 15px 3px;
     border: 1px solid #ccc;
     text-align: center;
     font-size: 25px;
