@@ -107,14 +107,14 @@ $reterr2=shell_exec($runscript." ".$testcase."/".$level."/".$qstno." ".$prog." "
 //|wc -l
 if($reterr2==0){
 $reterr3=shell_exec($runscript2." ".$testcase."/".$level."/".$qstno." ".$prog." 2>&1");     //run the output program in test cases
-echo $reterr3;
+//echo $reterr3;
 
 if($reterr3==0){                                                                              //all ouput test case passed
 $status=2;
 
 
 
-$qry="select type from levels where tlevel=$level";                                                              //TODO add condiyionf for debugging round                                                
+$qry="select type from levels where tlevel=$level";                                                                                                          
 $ret3 =mysqli_query($conn, $qry);
 if(!$ret3)die("ERR:5");
 
@@ -176,7 +176,7 @@ if(mysqli_num_rows($ret3)==1)$status= 10;
 else  die('ERR:10');                                      
 }
 
-$qry="select type from levels where tlevel=$level";                                                              //TODO add condiyionf for debugging round                                                
+$qry="select type from levels where tlevel=$level";                                                                                                           
 $ret3 =mysqli_query($conn, $qry);
 if(!$ret3)die("ERR:11");
 
@@ -238,7 +238,9 @@ if(! $ret3 )
 }
 
 echo ($status);
-                                                    //0 failed,1 compiled&&failed,2 passed,10 already passed
+//echo $endtime." ".$ctime." ".$stime." ".$tottime;
+//echo $endtime-$ctime;
+die();                                                    //0 failed,1 compiled&&failed,2 passed,10 already passed
 
 
 
@@ -250,7 +252,7 @@ echo ($status);
 }
 else 
 {
-echo "post not set";                                                         //if page is disabled
+echo "PS";                         //try to redirect                                                   //if page is disabled
 //header ( "Location: index.php" ) && die (); 
 }
 

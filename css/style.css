@@ -147,3 +147,9 @@ li.disabled:hover {
     padding: 5px 0px;
     color: #9CCC65;
 }
+
+.but {
+    margin-top: 15px;
+    width: 48%;
+    padding: 0px;
+}
