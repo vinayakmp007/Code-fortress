@@ -57,7 +57,7 @@ lang varchar(10),
 PRIMARY KEY (tlevel,qno)
 );
 
-A
+
 ALTER TABLE correct AUTO_INCREMENT=6000;
 INSERT INTO correct (tlevel,qno,teamid,status,time,lang) values (1,1,1234,0,1234,"cpp");
 

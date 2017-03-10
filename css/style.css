@@ -20,20 +20,42 @@ li.unused {
 	color: #ccc;
 }
 
-.topUl li:hover {
+li.usable {
+	color: #7cb342;
+}
+
+.topli:hover {
 	text-decoration: underline;
 	color: #F44336;
     font-weight: 600;	
 }
 
-.bottomUl li:hover {
+.bottomli:hover {
 	text-decoration: underline;
 	color: #F44336;
+    font-weight: 600;	
+}
+
+li.usable:hover {
+	text-decoration: underline;
+	color: #7cb342;
     font-weight: 500;	
 }
 
 li.active {
 	text-decoration: underline;
+    font-weight: 500;
+}
+
+li.disabled {
+	color: #eee;
+    font-weight: 500;
+    cursor: default;
+}
+
+li.disabled:hover {
+	color: #eee;
+    font-weight: 500;
 }
 
 .well {
