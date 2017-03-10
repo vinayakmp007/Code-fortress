@@ -6,28 +6,23 @@ cname varchar(255) NOT NULL,
 email varchar(40) NOT NULL UNIQUE,
 mno varchar(12) NOT NULL UNIQUE,
 pass varchar(12) NOT NULL ,
-<<<<<<<
 lang varchar(10) NOT NULL,
 status int NOT NULL,
-=======
 lang varchar(10) NOT NULL , 
 status int NOT NULL DEFAULT 1,
->>>>>>>
 PRIMARY KEY (ID)
 );
 
-<<<<<<< HEAD
+
 ALTER TABLE team AUTO_INCREMENT=1000; 
 INSERT INTO team (tname,cname,email,mno,pass,lang) VALUES('ATM','TKM','name@gmail','7560881699','banana','cpp');
-=======
+
  ALTER TABLE login AUTO_INCREMENT=1000; 
 INSERT INTO login (tname,cname,email,mno,pass,lang) VALUES('ATM','TKM','name@gmail','7560881699','banana','cpp');
 
  CREATE TRIGGER namecheck BEFORE INSERT ON login FOR EACH ROW 
 BEGIN
 		
->>>>>>> 1ab6e6e3b8d934535d5d53337e0cb425eb847ca1
-<<<<<<<
 
 
 
@@ -106,7 +101,7 @@ PRIMARY KEY (page)
 ALTER TABLE pagecontrol AUTO_INCREMENT=8000;
 INSERT INTO pagecontrol (page,status) values ('foof',1);
 
-<<<<<<<
+
 
 
 CREATE TABLE sublog
@@ -127,11 +122,7 @@ INSERT INTO sublog (tlevel,qno,teamid,dat,time,lang) values ( 5,4,1020,'foo',223
 
 
 
-=======
-=======
- 
->>>>>>>
->>>>>>>
+
 ALTER TABLE testcase AUTO_INCREMENT=5000;
 
 
@@ -150,7 +141,6 @@ toutput BLOB NOT NULL,
 PRIMARY KEY (tlevel,qno,ncases) 
 ); 
 
-<<<<<<<
 
 
 
@@ -159,7 +149,8 @@ PRIMARY KEY (tlevel,qno,ncases)
 
 
 
-=======
+
+
 ALTER TABLE testcase AUTO_INCREMENT=5000; 
  
 CREATE TABLE  
@@ -174,6 +165,6 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '1234' WITH GRAN
  
 
 
->>>>>>>
+
 INSERT INTO questions (tlevel,qno,quest,dvalues,maxscore) values(2,3,"252525dgsds","5325",56);
 
