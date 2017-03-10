@@ -16,7 +16,7 @@ import java.awt.*;
  */
 public final class vTable extends javax.swing.JPanel {
 String query;
-
+connekt sqlcon;
 
 ResultSet rslt;
 JFrame k;
@@ -34,7 +34,7 @@ public void loadTable()
 {
     try {
         try {
-           // rslt=sqlcon.executeQuery(query);                      //edit here
+            rslt=sqlcon.stmt.executeQuery(query);                      //edit here
             
         } catch (Exception ex) {
             // Logger.getLogger(TablePane.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,12 +70,12 @@ public void loadTable()
     }
 
 }
-    public vTable(String qry) {
+    public vTable(String qry,connekt b) {
         initComponents();
         query=qry;
-        //caller=a;
+        //
         this.setVisible(true);
-        //sqlcon=b;
+        sqlcon=b;
         loadTable();
        // JScrollPane scrollPane = new JScrollPane(jTable1);
         //scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
