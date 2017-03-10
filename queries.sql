@@ -50,6 +50,7 @@ status int NOT NULL,
 time int(12) NOT NULL,
 code BLOB,
 lang varchar(10),
+diff int NOT NULL,
 PRIMARY KEY (tlevel,qno)
 );
 
@@ -115,6 +116,7 @@ code BLOB,
 status int NOT NULL,
 time int(12) NOT NULL,
 lang varchar(12),
+diff int NOT NULL,
 PRIMARY KEY (sublogid)
 );
 
@@ -163,7 +165,7 @@ tlevel  int NOT NULL UNIQUE ,
 qstns int NOT NULL,
 status int NOT NULL,
 type varchar(20),
-totaltime int NOT NULL;
+totaltime int NOT NULL,
 PRIMARY KEY (tlevel) 
 ); 
 

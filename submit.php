@@ -26,10 +26,38 @@ $lan=$_SESSION['lang'];
 
 
 $time=0;                                                        //TODO remove this
+$diff=-1;
+
+$qry="select startt from levelstart where tlevel=$level and teamid=$team"; 
+//echo $qry;
+$ret4 =mysqli_query($conn, $qry);
+
+//echo $qry;
+if(!$ret4)die("ERR:13");
+if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
+
+$row = mysqli_fetch_assoc($ret4);
+$stime=$row['startt'];
+}
+else die("ERR:14");
 
 
+$qry="select totaltime from levels where tlevel=$level"; 
+$ret4 =mysqli_query($conn, $qry);
 
+//echo $qry;
+if(!$ret4)die("ERR:15");
+if(mysqli_num_rows($ret4)==1){                         //gets total time for that level
 
+$row = mysqli_fetch_assoc($ret4);
+$tottime=$row['totaltime'];
+$endtime=$tottime+$stime;
+}
+else die("ERR:16");
+$ctime=time();
+if($ctime>$endtime)die("TIMEEND");
+if($ctime<$stime)die("TIMEERR");
+$time=$ctime;
 
 
 $ext="";
@@ -79,12 +107,62 @@ $reterr2=shell_exec($runscript." ".$testcase."/".$level."/".$qstno." ".$prog." "
 //|wc -l
 if($reterr2==0){
 $reterr3=shell_exec($runscript2." ".$testcase."/".$level."/".$qstno." ".$prog." 2>&1");     //run the output program in test cases
-
+echo $reterr3;
 
 if($reterr3==0){                                                                              //all ouput test case passed
 $status=2;
 
-$qry="insert into correct(tlevel,qno,teamid,status,lang,time,code) values($level,$qstno,$team,$status,'$lan',$time,'{$code}')";           //check wheither already submitted
+
+
+$qry="select type from levels where tlevel=$level";                                                              //TODO add condiyionf for debugging round                                                
+$ret3 =mysqli_query($conn, $qry);
+if(!$ret3)die("ERR:5");
+
+
+if(mysqli_num_rows($ret3)==1){                         //compare with original code
+
+$row = mysqli_fetch_assoc($ret3);
+if($row['type']=='debug'){
+
+
+$qry="select dvalues from questions where tlevel=$level and qno=$qstno"; 
+$ret4 =mysqli_query($conn, $qry);
+
+//echo $qry;
+if(!$ret4)die("ERR:6");
+
+if((mysqli_num_rows($ret4))==1){
+
+$row = mysqli_fetch_assoc($ret4);
+$dat=$row['dvalues'];
+                                                                                     
+$defcode=$testcase."/".$level."/".$qstno."/"."tcode.txt";                                                                                 
+unlink($defcode);                                                                   //this part write the code into file 
+$handle = fopen($defcode, 'w') or die('Cannot create file: prog ');
+fwrite($handle, $defcode);
+fclose($handle);
+
+$diff=shell_exec("diff   -N ".$defcode." ".$progcode." | grep '^>' | wc -l ");
+//echo("diff   -N ".$defcode." ".$progcode." | grep '^<' | wc -l ".$diff);
+
+}
+
+else  die('ERR:multiple questions'); 
+}
+//                                         put else here for 'coding'
+}                                        
+else  die('ERR:7'); 
+
+
+
+
+
+
+
+
+
+
+$qry="insert into correct(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";           //check wheither already submitted
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(! $ret3 )                                                      //unable to insert
@@ -95,11 +173,14 @@ $qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team"
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(mysqli_num_rows($ret3)==1)$status= 10;                                         
-else  die('ERR');                                      
+else  die('ERR:10');                                      
 }
 
 $qry="select type from levels where tlevel=$level";                                                              //TODO add condiyionf for debugging round                                                
 $ret3 =mysqli_query($conn, $qry);
+if(!$ret3)die("ERR:11");
+
+
 if(mysqli_num_rows($ret3)==1){                         //compare with original code
 
 $row = mysqli_fetch_assoc($ret3);
@@ -107,11 +188,24 @@ if($row['type']=='debug'){
 
 
 $qry="select dvalues from questions where tlevel=$level and qno=$qstno"; 
-$ret3 =mysqli_query($conn, $qry);
-if(mysqli_num_rows($ret3)==1){
-$row = mysqli_fetch_assoc($ret3);
-$dat=$row['dvalues'];
+$ret4 =mysqli_query($conn, $qry);
 
+//echo $qry;
+if(!$ret4)die("ERR:6");
+
+if((mysqli_num_rows($ret4))==1){
+
+$row = mysqli_fetch_assoc($ret4);
+$dat=$row['dvalues'];
+                                                                                     
+$defcode=$testcase."/".$level."/".$qstno."/"."tcode.txt";                                                                                 
+unlink($defcode);                                                                   //this part write the code into file 
+$handle = fopen($defcode, 'w') or die('ERR:20');
+fwrite($handle, $dat);
+fclose($handle);
+
+$diff=shell_exec("diff   -N ".$defcode." ".$progcode." | grep '^>' | wc -l ");
+//echo("diff   -N ".$defcode." ".$progcode." | grep '^<' | wc -l ".$diff);
 
 }
 
@@ -119,7 +213,7 @@ else  die('ERR:multiple questions');
 }
 //                                         put else here for 'coding'
 }                                        
-else  die('ERR'); 
+else  die('ERR:7'); 
 
 }
 //echo $runscript2." ".$testcase."/".$level."/".$qstno." ".$prog."/".$level."/".$qstno;
@@ -133,18 +227,18 @@ else  die('ERR');
 
 
 
-$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code) values($level,$qstno,$team,$status,'$lan',$time,'{$code}')";
+$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";
 
 
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(! $ret3 )
 {
-  die('ERR');                                     
+  die('ERR:8');                                     
 }
 
-
-echo die($status);                                                    //0 failed,1 compiled&&failed,2 passed,10 already passed
+echo ($status);
+                                                    //0 failed,1 compiled&&failed,2 passed,10 already passed
 
 
 

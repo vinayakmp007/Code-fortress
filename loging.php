@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 require_once ("include/mysq.php");                           //conatins connection information
 require_once ("include/func.php");
 
-
+session_set_cookie_params(3600*3,"/");
 session_start(); 
 if(!isset($_SESSION['teamid'])||!isset($_SESSION['password'])){
 if(isset($_POST['submit'])){
