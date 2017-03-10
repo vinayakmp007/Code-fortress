@@ -23,7 +23,15 @@ $time=$_POST['time'];
 $level=$_POST['level'];
 $team=$_SESSION['teamid'];
 $lan=$_SESSION['lang'];
+
+
 $time=0;                                                        //TODO remove this
+
+
+
+
+
+
 $ext="";
 
 if($lan=='C'){
@@ -66,7 +74,7 @@ if(empty($reterr)){                                                             
 $status=1;
 
 $reterr2=shell_exec($runscript." ".$testcase."/".$level."/".$qstno." ".$prog." ".$progout." 2>&1 |wc -l");     //run the output program in test cases
-echo $reterr2;
+//echo $reterr2;
 
 //|wc -l
 if($reterr2==0){
@@ -76,23 +84,26 @@ $reterr3=shell_exec($runscript2." ".$testcase."/".$level."/".$qstno." ".$prog." 
 if($reterr3==0){                                                                              //all ouput test case passed
 $status=2;
 
-$qry="insert into correct";
+$qry="insert into correct(tlevel,qno,teamid,status,lang,time,code) values($level,$qstno,$team,$status,'$lan',$time,'{$code}')";           //check wheither already submitted
+//echo $qry;
+$ret3 =mysqli_query($conn, $qry);
+if(! $ret3 )
+{
 
 
-
-                                            //TODO: insert into correct table
-
-
-
-
-
-
+$qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team";           //check wheither already submitted
+//echo $qry;
+$ret3 =mysqli_query($conn, $qry);
+if(mysqli_num_rows($ret3)==1)$status= 10;                                         
+else  die('ERR');                                      //TODO might be due do resubmmision
+}
 
 
+                                        
 
 }
 //echo $runscript2." ".$testcase."/".$level."/".$qstno." ".$prog."/".$level."/".$qstno;
-echo $reterr3;
+//echo $reterr3;
 }
 
 
@@ -100,14 +111,32 @@ echo $reterr3;
 
 }
 
-                                                    //TODO:insert into submission table
+
+
+$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code) values($level,$qstno,$team,$status,'$lan',$time,'{$code}')";
+
+
+//echo $qry;
+$ret3 =mysqli_query($conn, $qry);
+if(! $ret3 )
+{
+  die('ERR');                                     
+}
+
+
+echo die($status);                                                    //0 failed,1 compiled&&failed,2 passed,10 already passed
+
+
+
+
+
 
 
 
 }
 else 
 {
-echo "post not set";
+echo "post not set";                                                         //if page is disabled
 //header ( "Location: index.php" ) && die (); 
 }
 

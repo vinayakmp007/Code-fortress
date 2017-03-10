@@ -46,15 +46,16 @@ subid int NOT NULL AUTO_INCREMENT UNIQUE,
 tlevel  int NOT NULL,
 qno    int NOT NULL,
 teamid   int NOT NULL,
-status int,
+status int NOT NULL,
 time int(12) NOT NULL,
+code BLOB,
 lang varchar(10),
 PRIMARY KEY (tlevel,qno)
 );
 
 
 ALTER TABLE correct AUTO_INCREMENT=6000;
-INSERT INTO correct (tlevel,qno,teamid,status,time,lang) values (1,1,1234,0,1234,"cpp");
+INSERT INTO correct (tlevel,qno,teamid,status,time,lang,code) values (1,1,1234,0,1234,"cpp","main(){}");
 
 
 
@@ -109,11 +110,12 @@ CREATE TABLE sublog
 sublogid int NOT NULL AUTO_INCREMENT UNIQUE,
 tlevel  int NOT NULL,
 qno    int NOT NULL,
-teamid   int NOT NULL,//foreignkey
-dat BLOB,
+teamid   int NOT NULL,
+code BLOB,
+status int NOT NULL,
 time int(12) NOT NULL,
 lang varchar(12),
-PRIMARY KEY (subid)
+PRIMARY KEY (sublogid)
 );
 
 ALTER TABLE sublogid AUTO_INCREMENT=9000;
