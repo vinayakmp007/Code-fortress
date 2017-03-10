@@ -33,7 +33,7 @@ li.usable {
 .bottomli:hover {
 	text-decoration: underline;
 	color: #F44336;
-    font-weight: 500;	
+    font-weight: 600;	
 }
 
 li.usable:hover {
@@ -44,6 +44,18 @@ li.usable:hover {
 
 li.active {
 	text-decoration: underline;
+    font-weight: 500;
+}
+
+li.disabled {
+	color: #eee;
+    font-weight: 500;
+    cursor: default;
+}
+
+li.disabled:hover {
+	color: #eee;
+    font-weight: 500;
 }
 
 .well {

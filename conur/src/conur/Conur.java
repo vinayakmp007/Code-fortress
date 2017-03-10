@@ -23,6 +23,7 @@ public class Conur {
     public static void main(String[] args) {
         // TODO code application logic here
        mn.main(args);
+       player_disable.main(args);
     }
     
 }
