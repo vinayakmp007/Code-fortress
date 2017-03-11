@@ -24,7 +24,7 @@ $level=$_POST['level'];
 $team=$_SESSION['teamid'];
 $lan=$_SESSION['lang'];
 
-
+//echo $code;
 $time=0;                                                        //TODO remove this
 $diff=-1;
 
@@ -139,7 +139,7 @@ $dat=$row['dvalues'];
 $defcode=$testcase."/".$level."/".$qstno."/"."tcode.txt";                                                                                 
 unlink($defcode);                                                                   //this part write the code into file 
 $handle = fopen($defcode, 'w') or die('Cannot create file: prog ');
-fwrite($handle, $defcode);
+fwrite($handle, $dat);
 fclose($handle);
 
 $diff=shell_exec("diff   -N ".$defcode." ".$progcode." | grep '^>' | wc -l ");
@@ -227,13 +227,14 @@ else  die('ERR:7');
 
 
 
-$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";
-
-
+//$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";
+$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";  
+unset($ret3);
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(! $ret3 )
 {
+ echo("Error description: " . mysqli_error($conn));
   die('ERR:8');                                     
 }
 
@@ -252,7 +253,8 @@ die();                                                    //0 failed,1 compiled&
 }
 else 
 {
-echo "PS";                         //try to redirect                                                   //if page is disabled
+echo "PS"; 
+die();                        //try to redirect                                                   //if page is disabled
 //header ( "Location: index.php" ) && die (); 
 }
 

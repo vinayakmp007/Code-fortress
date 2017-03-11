@@ -8,7 +8,7 @@
             {
             var code=$("#team").val();           var pa=$("#password").val();
             var submit="submit";
-            var dataString = 'teamname='+username+'&password='+password+'&submit='+submit;;
+            var dataString = 'teamname='+username+'&password='+password+'&submit='+submit;
             if($.trim(username).length>0 && $.trim(password).length>0)
             {
 
