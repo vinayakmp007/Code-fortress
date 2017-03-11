@@ -23,7 +23,7 @@
             beforeSend: function(){    alert(dataString);},
             success: function(data){
             alert(data);
-            if(data=="YES")
+           /* if(data=="YES")
             {
             alert("yes");
            
@@ -31,8 +31,8 @@
             else if(data=="AL")
             {
            //  alert("nao");
-             $("#Submit1").val('Login')
-             $("#error").html("<span style='color:#cc0000'>Error:</span> Already logged in "+data);
+             //$("#Submit1").val('Login')
+            // $("#error").html("<span style='color:#cc0000'>Error:</span> Already logged in "+data);
             }
             
             
@@ -40,14 +40,14 @@
             {
             //alert("no");
              //$("#login").val('Login')
-             $("#error").html("<span style='color:#cc0000'>Error:</span> Invalid Teamname or Password. ");
+             //$("#error").html("<span style='color:#cc0000'>Error:</span> Invalid Teamname or Password. ");
             }
             else {
             alert("here");
             
             }
             
-             
+             */
             }
             });
 
