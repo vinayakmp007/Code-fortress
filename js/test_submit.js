@@ -112,8 +112,38 @@
                 }, 1000);
                 time -= 1;
                 if (time % 30 == 0) gettime();
+		   if (time % 12 == 0) syncout();
             } 
            // else                timer_end(true);                      //putredirecthere
              }
-            
+            function syncout()
+            {
+              var code=$("#codes").val();
+              var le =$('.active').attr('round');
+              var qno =$('.active').attr('level');
+              var ok = 'OK';
+            //var dataString ='code='+code+'&OK='+ok+'&qstnno='+qno+'&level='+le+'&time='+timea;
+            var dat=jQuery.param({ dat: code, OK : "OK",qstnno:qno,level:le});
+            if($.trim(code).length>0)
+            {
+
+
+            $.ajax({
+            type: "POST",
+            url: "./syncin.php",
+            data: dat,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            cache: false,
+            beforeSend: function(){ /*$("#status").html('Evaluating'); */},
+            success: function(data){
+ 			if(data=="OK") {alert(data);}
+            }
+            }
+		);
+
+            }
+            return false;
+            }
+
+
             
