@@ -10,7 +10,7 @@
             var password=$("#password1").val();
             var submit="submit1";
              alert("im in");
-            var dataString = 'teamname1='+username+'&password1='+password+'&submit1='+submit;
+            var dataString = 'teamname='+username+'&password='+password+'&submit='+submit;
             if($.trim(username).length>0 && $.trim(password).length>0)
             {
 
@@ -20,31 +20,32 @@
             url: "./loging.php",
             data: dataString,
             cache: false,
-            beforeSend: function(){    alert(dataString);$("#Submit1").val('Connecting');$("#error").html(" ");},
+            beforeSend: function(){    alert(dataString);},
             success: function(data){
-                
+                //alert(data);
             if(data=="YES")
             {
-            alert(data);
-            window.setTimeout(function () {
-                location.href = "./index.php";              //TODO changes to rules
-            }, 0001);
+            alert("yes");
+           
             }
             else if(data=="AL")
             {
-             alert(data);
+           //  alert("nao");
              $("#Submit1").val('Login')
              $("#error").html("<span style='color:#cc0000'>Error:</span> Already logged in "+data);
             }
             
             
-            else
+            else if(data=="NO")
             {
-            alert(data);
-             $("#login").val('Login')
+            //alert("no");
+             //$("#login").val('Login')
              $("#error").html("<span style='color:#cc0000'>Error:</span> Invalid Teamname or Password. ");
             }
+            else {
+            alert("here");
             
+            }
             
              
             }

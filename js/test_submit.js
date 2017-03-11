@@ -1,16 +1,15 @@
 
 
 
-alert('sdgf');
+               var sub=0;
+               var time=0010;
             $(document).ready(function() {
-<<<<<<<
-
-=======
-
-		alert("Njan ide ethi");
->>>>>>>
+            gettime();
             $('#submit').click(function()
             {
+            //timer();
+            if(sub==1)return;
+            sub=1;
             var code=$("#codes").val();
             //alert(code);
               var le =$('.active').attr('round');
@@ -29,7 +28,7 @@ alert('sdgf');
             data: dat,
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             cache: false,
-            beforeSend: function(){ $("#status").html('Evaluating');},
+            beforeSend: function(){ $("#status").html('Evaluating'); },
             success: function(data){
             if(data==0)
             {
@@ -60,7 +59,7 @@ alert('sdgf');
             }
 
 
-
+                sub=0;
             }
             });
 
@@ -69,5 +68,52 @@ alert('sdgf');
             });
 
 
-
+            timer();
             });
+            
+            
+            function gettime(){
+            var le =$('.active').attr('round');
+            var dat=jQuery.param({ level:le, OK : "OK"});
+            $.ajax({
+            type: "POST",
+            url: "./timget.php",
+            data: dat,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            cache: false,
+            beforeSend: function(){  },
+            success: function(data){
+            //alert(data);
+            time=data;
+            }
+            });
+            
+            
+            
+            
+            }
+            
+            function timer() {
+            var sec_num = time;
+            //alert("time");
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+            if (hours == 0) {
+                if (minutes == 0)
+                    $('#timee').html("" + seconds + "s");
+                else
+                    $('#timee').html("" + minutes + "m " + seconds + "s");
+            } else
+                $('#timee').html("" + hours + "h " + minutes + "m " + seconds + "s");
+            if (time > 0) {
+                setTimeout(function () {
+                    timer();
+                }, 1000);
+                time -= 1;
+                if (time % 30 == 0) gettime();
+            } 
+           // else                timer_end(true);                      //putredirecthere
+             }
+            
+            

@@ -57,6 +57,7 @@ die();
 }
 die('ERR:1');
 }
+else die("ERR:56");
 }
 
 
