@@ -113,7 +113,7 @@
                 time -= 1;
                 if (time % 30 == 0) gettime();
 		   if (time % 12 == 0) syncout();
-		if(time%10==0) syncin("dt");
+		if(time%10==0) syncin("qs");
             } 
            // else                timer_end(true);                      //putredirecthere
              }
@@ -158,7 +158,7 @@
             var dat=jQuery.param({ qstnno:qno,level:le,qry:qst, OK:ok});
             
 
-	    	alert("syncin scalled");
+	    	//alert("syncin scalled");
             $.ajax({
             type: "POST",
             url: "./syncout.php",
@@ -167,8 +167,11 @@
             cache: false,
             beforeSend: function(){ /*$("#status").html('Evaluating'); */},
             success: function(data){
- 		alert(data);	
+ 		
+		if(qst=="dt")
 	  $("#codes").val(data);
+		else if(qst=="qs")
+		{$(".codeHere").html(data); }
             }
             }
 		);
