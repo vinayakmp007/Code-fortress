@@ -6,10 +6,10 @@
 
             $('#login').click(function()
             {
-            var username=$("#teamname").val();
-            var password=$("#password").val();
-            var submit="submit";
-            var dataString = 'teamname='+username+'&password='+password+'&submit='+submit;;
+            var username=$("#teamname1").val();
+            var password=$("#password1").val();
+            var submit="submit1";
+            var dataString = 'teamname1='+username+'&password1='+password+'&submit1='+submit;
             if($.trim(username).length>0 && $.trim(password).length>0)
             {
 
@@ -24,7 +24,7 @@
             if(data=="YES")
             {
             window.setTimeout(function () {
-                location.href = "./index.php";
+                location.href = "./index.php";              //TODO changes to rules
             }, 0001);
             }
             else if(data=="AL")
