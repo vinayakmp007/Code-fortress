@@ -175,6 +175,17 @@ PRIMARY KEY (tlevel)
 
 
 
+CREATE TABLE  sync
+( 
+logid int NOT NULL AUTO_INCREMENT UNIQUE, 
+tlevel  int NOT NULL ,
+qno int NOT NULL, 
+teamid int NOT NULL,
+dat BLOB,
+PRIMARY KEY (teamid,tlevel,qno) 
+); 
+
+
 
 
 

@@ -14,5 +14,7 @@ do
 #echo "$output$m" "$out$m";
 a=$(diff   -N "$output$m" "$out$m" | grep '^<' | wc -l );   #take this code to compare check wheuther to ignore the space
 let b+=$a;
+a=$(diff   -N "$output$m" "$out$m" | grep '^>' | wc -l );   #take this code to compare check wheuther to ignore the space
+let b+=$a;
 done
 echo $b;
