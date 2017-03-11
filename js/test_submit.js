@@ -8,7 +8,7 @@
             $('#submit').click(function()
             {
             //timer();
-            if(sub==1)return;
+            if(sub==1)return;                               //make it more efficent
             sub=1;
             var code=$("#codes").val();
             //alert(code);
@@ -111,8 +111,8 @@
                     timer();
                 }, 1000);
                 time -= 1;
-                if (time % 30 == 0) gettime();
-		   if (time % 12 == 0) syncout();
+                if (time % 30 == 0) {gettime();sub=0;}
+		   if (time % 12 == 0) {syncout();}
 		//if(time%10==0) syncin("qs");
             } 
            // else                timer_end(true);                      //putredirecthere

@@ -69,6 +69,28 @@ else die("ERR:114");
 
 
 }
+else if($dat=="df"){                                                   //default values
+
+
+$qry="select dvalues from questions where tlevel=$level and qno=$qno"; 
+//echo $qry;
+$ret4 =mysqli_query($conn, $qry);
+
+//echo $qry;
+if(!$ret4)die("ERR:113");
+if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
+
+$row = mysqli_fetch_assoc($ret4);
+$blb=$row['dvalues'];
+
+if(isset($blb))echo $blb;
+die();
+}
+else die("ERR:114");
+
+
+}
+
 else die("ERR:451");
 
 
