@@ -43,6 +43,7 @@ PRIMARY KEY (tlevel,qno)
 CREATE TABLE correct
 (
 subid int NOT NULL AUTO_INCREMENT UNIQUE,
+id int NOT NULL,
 tlevel  int NOT NULL,
 qno    int NOT NULL,
 teamid   int NOT NULL,

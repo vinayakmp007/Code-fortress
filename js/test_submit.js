@@ -1,8 +1,14 @@
 
 
 
-
+alert('sdgf');
             $(document).ready(function() {
+<<<<<<<
+
+=======
+
+		alert("Njan ide ethi");
+>>>>>>>
             $('#submit').click(function()
             {
             var code=$("#codes").val();
