@@ -94,7 +94,6 @@
   
 
 <script  type="text/javascript">
-
         var frmvalidator1 = new Validator("login-form");
        // frmvalidator1.EnableOnPageErrorDisplaySingleBox();
         frmvalidator1.EnableMsgsTogether();
@@ -106,7 +105,7 @@
        // frmvalidator.EnableOnPageErrorDisplaySingleBox();
         frmvalidator.EnableMsgsTogether();
         frmvalidator.addValidation("password","req","password is required");
-       frmvalidator.addValidation("password","maxlen=40","password cannot exceed 11");
+        frmvalidator.addValidation("password","maxlen=40","password cannot exceed 11");
         frmvalidator.addValidation("cpassword","eqelmnt=password","The confirmed password is not same as password");
         frmvalidator.addValidation("teamName","req","Please enter your Team Name");
         frmvalidator.addValidation("teamName","maxlen=20","Max length for Team is 20");

@@ -38,9 +38,9 @@
         <div class="bar">
           <a href="#"><li class="topli">ROUND 1 - Prologue</li></a>
           <a href="#"><li class="bottomli active" level="1" round="1" attr=>Level 1 - Pick the lock</li></a>
-          <a href="#"><li class="bottomli usable" level="2" round="1">Level 2 - Reach to dragon</li></a>
-          <a href="#"><li class="bottomli unused disabled" level="3" round="1">Level 3 - Train the dragon</li></a>
-          <a href="#"><li class="bottomli unused disabled" level="4" round="1">Level 4 - Fly to Castle</li></a>
+          <a href="#"><li class="bottomli" level="2" round="1">Level 2 - Reach to dragon</li></a>
+          <a href="#"><li class="bottomli" level="3" round="1">Level 3 - Train the dragon</li></a>
+          <a href="#"><li class="bottomli" level="4" round="1">Level 4 - Fly to Castle</li></a>
           <a href="#"><li class="topli unused disabled">ROUND 2 - Challenge</li></a>
           <a href="#"><li class="bottomli unused disabled" level="5" round="2">Level 5 - Fight the guards</li></a>
           <a href="#"><li class="bottomli unused disabled" level="6" round="2">Level 6 - Enter the castle</li></a>
@@ -184,6 +184,10 @@ The second line contains <span style="font-size: 100%; display: inline-block;" c
     $(document).scroll(function() {
      pageStyle();
     });
+    $('.bottomli').click(function() {
+      $('.active').removeClass('active');
+      $(this).addClass('active');
+    })
   </script>
 </body>
 </html>
