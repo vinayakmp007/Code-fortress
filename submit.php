@@ -80,8 +80,8 @@ $progout=$prog."/pro.o";
 
 
 //$compiler
-
-unlink($progcode);                                                                   //this part write the code into file 
+$filnam=$progcode;
+if(file_exists($progcode))unlink($progcode);                                                                   //this part write the code into file 
 $handle = fopen($progcode, 'w') or die('Cannot create file: prog ');
 fwrite($handle, $code);
 fclose($handle);
@@ -137,7 +137,7 @@ $row = mysqli_fetch_assoc($ret4);
 $dat=$row['dvalues'];
                                                                                      
 $defcode=$testcase."/".$level."/".$qstno."/"."tcode.txt";                                                                                 
-unlink($defcode);                                                                   //this part write the code into file 
+if(file_exists($defcode))unlink($defcode);                                                                   //this part write the code into file 
 $handle = fopen($defcode, 'w') or die('Cannot create file: prog ');
 fwrite($handle, $dat);
 fclose($handle);
@@ -158,23 +158,43 @@ else  die('ERR:7');
 
 
 
+$null=NULL;
+$stmt = $conn->prepare("insert into correct(tlevel,qno,teamid,status,lang,time,code,diff) values(?,?,?,?,?,?,?,?)");
+$stmt->bind_param("ddddsdbd",$level,$qstno,$team,$status,$lan,$time,$null,$diff);
+$stmt->send_long_data(6, file_get_contents($filnam));
 
+$stmt->execute();                   
 
-
-
-$qry="insert into correct(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";           //check wheither already submitted
-//echo $qry;
-$ret3 =mysqli_query($conn, $qry);
-if(! $ret3 )                                                      //unable to insert
-{
-
+if(!empty($stmt->error)){
 
 $qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team";           //check wheither already submitted
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
 if(mysqli_num_rows($ret3)==1)$status= 10;                                         
-else  die('ERR:10');                                      
+else  die('ERR:10');   
+
 }
+
+
+$stmt->close(); 
+
+
+
+//$qry="insert into correct(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";           //check wheither already submitted
+//echo $qry;
+//$ret3 =mysqli_query($conn, $qry);
+//if(! $ret3 )                                                      //unable to insert
+//{
+
+
+//$qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team";           //check wheither already submitted
+//echo $qry;
+//$ret3 =mysqli_query($conn, $qry);
+//if(mysqli_num_rows($ret3)==1)$status= 10;                                         
+//else  die('ERR:10');                                      
+//}
+
+
 
 $qry="select type from levels where tlevel=$level";                                                                                                           
 $ret3 =mysqli_query($conn, $qry);
@@ -199,7 +219,7 @@ $row = mysqli_fetch_assoc($ret4);
 $dat=$row['dvalues'];
                                                                                      
 $defcode=$testcase."/".$level."/".$qstno."/"."tcode.txt";                                                                                 
-unlink($defcode);                                                                   //this part write the code into file 
+if(file_exists($defcode))unlink($defcode);                                                                   //this part write the code into file 
 $handle = fopen($defcode, 'w') or die('ERR:20');
 fwrite($handle, $dat);
 fclose($handle);
@@ -227,6 +247,16 @@ else  die('ERR:7');
 
 
 
+
+$null=NULL;
+$stmt = $conn->prepare("insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values(?,?,?,?,?,?,?,?)");
+$stmt->bind_param("ddddsdbd",$level,$qstno,$team,$status,$lan,$time,$null,$diff);
+$stmt->send_long_data(6, file_get_contents($filnam));
+
+$stmt->execute();                   //TODO          check whether error is empty
+$stmt->close();                    
+
+/*
 //$qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";
 $qry="insert into sublog(tlevel,qno,teamid,status,lang,time,code,diff) values($level,$qstno,$team,$status,'$lan',$time,'{$code}',$diff)";  
 unset($ret3);
@@ -237,7 +267,7 @@ if(! $ret3 )
  echo("Error description: " . mysqli_error($conn));
   die('ERR:8');                                     
 }
-
+*/
 echo ($status);
 //echo $endtime." ".$ctime." ".$stime." ".$tottime;
 //echo $endtime-$ctime;

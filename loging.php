@@ -8,10 +8,10 @@ require_once ("include/func.php");
 session_set_cookie_params(3600*3,"/");
 session_start(); 
 if(!isset($_SESSION['teamid'])||!isset($_SESSION['password'])){
-if(isset($_POST['submit1'])){
+if(isset($_POST['submit'])){
 
-$tname =$_POST['teamname1'] ;
-$password=$_POST['password1'];
+$tname =$_POST['teamname'] ;
+$password=$_POST['password'];
 
 $tname=test_input($tname);
 $password=test_input($password);                                   //can be avoided

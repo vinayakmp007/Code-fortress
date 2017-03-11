@@ -6,7 +6,7 @@
             $('#submit').click(function()
             {
             var code=$("#codes").val();
-            alert(code);
+            //alert(code);
               var le =$('.active').attr('round');
               var qno =$('.active').attr('level');
             var timea = 0;

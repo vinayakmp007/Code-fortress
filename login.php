@@ -10,7 +10,7 @@ if(!isset($_SESSION['teamid'])||!isset($_SESSION['password'])){
 echo '	
         <script src="./js/sign.js" type="text/javascript"></script>
         <script src="./js/jqmin.js" type="text/javascript"></script>
-         <script src="./js/login.js" type="text/javascript"></script>
+         <script src="./js/login2.js" type="text/javascript"></script>
           
          
         <div id="box">
@@ -44,7 +44,7 @@ echo '
         
 	<script  type="text/javascript">
 var frmvalidator = new Validator("login-form");
-frmvalidator.EnableOnPageErrorDisplaySingleBox();
+//frmvalidator.EnableOnPageErrorDisplaySingleBox();
 frmvalidator.EnableMsgsTogether();
 
 
