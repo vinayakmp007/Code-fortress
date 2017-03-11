@@ -22,7 +22,7 @@
             cache: false,
             beforeSend: function(){    alert(dataString);},
             success: function(data){
-                //alert(data);
+            alert(data);
             if(data=="YES")
             {
             alert("yes");
