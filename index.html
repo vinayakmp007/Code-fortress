@@ -77,10 +77,10 @@
             </div>
             <form class="login-form" action="" method="post"  name="login-form" style="padding: 0px 30px;margin-top: 30px;">
               <div class="input-field">
-                <input type="text" class="demoInputBox trans" name="teamName1" value="" placeholder="Team name">
+                <input id = "teamname1" type="text" class="demoInputBox trans" name="teamName1" value="" placeholder="Team name">
               </div>
               <div class="input-field">
-                <input type="password" class="demoInputBox trans" name="password1" value="" placeholder="Password">
+                <input id="password1"  type="password" class="demoInputBox trans" name="password1" value="" placeholder="Password">
               </div>
               <div style="margin: 20px 0px 30px 0px;">
                 <input id = 'submit1' type="submit" name="submit1" value="Sign In" class="btnRegister" onclick="clicksin();">
@@ -94,6 +94,7 @@
   
 
 <script  type="text/javascript">
+
         var frmvalidator1 = new Validator("login-form");
        // frmvalidator1.EnableOnPageErrorDisplaySingleBox();
         frmvalidator1.EnableMsgsTogether();

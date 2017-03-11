@@ -2,7 +2,7 @@
 
 
         
-            $(document).ready(function() {
+
 
             function clicksin()
             {
@@ -20,9 +20,9 @@
             url: "./loging.php",
             data: dataString,
             cache: false,
-            beforeSend: function(){ $("#Submit1").val('Connecting');$("#error").html(" ");},
+            beforeSend: function(){    alert(dataString);$("#Submit1").val('Connecting');$("#error").html(" ");},
             success: function(data){
-           
+                
             if(data=="YES")
             {
             alert(data);
@@ -52,9 +52,6 @@
 
             }
             return false;
-            });
-            
+            }
 
-
-            });
         
