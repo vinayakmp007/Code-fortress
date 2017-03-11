@@ -158,7 +158,7 @@ startt int NOT NULL,
 PRIMARY KEY (teamid,tlevel) 
 ); 
 
-/* to enable and disable level*/
+/* to enable and disable level    add rules*/
 CREATE TABLE levels
 ( 
 tlevel  int NOT NULL UNIQUE , 
