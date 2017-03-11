@@ -1,2 +1,3 @@
 var x = $('.active').attr('level');
 var y = $('.active').attr('round');
+alert(x + ' ' + y);

@@ -113,7 +113,7 @@
                 time -= 1;
                 if (time % 30 == 0) gettime();
 		   if (time % 12 == 0) syncout();
-		if(time%10==0) syncin("qs");
+		//if(time%10==0) syncin("qs");
             } 
            // else                timer_end(true);                      //putredirecthere
              }
@@ -137,8 +137,8 @@
             cache: false,
             beforeSend: function(){ /*$("#status").html('Evaluating'); */},
             success: function(data){
- 			alert(data);
-			if(data=="OK") {alert(data);}
+ 			//alert(data);
+			//if(data=="OK") {alert(data);}
             }
             }
 		);
