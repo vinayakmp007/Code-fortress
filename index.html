@@ -55,7 +55,7 @@
                   </p>
               </div>
               <p style="position: relative;top: -5px;">
-                <input type="checkbox" id="Terms" />
+                <input type="checkbox" id="Terms"name="Terms" />
                 <label for="test5"> I accept Terms and Conditions</label>
               </p>
               <div style="margin-bottom: 30px;">
@@ -79,7 +79,7 @@
                 <input type="password" class="demoInputBox trans" name="password1" value="" placeholder="Password">
               </div>
               <div style="margin: 20px 0px 30px 0px;">
-                <input type="submit" name="submit1" value="Sign In" class="btnRegister">
+                <input id = 'submit1' type="submit" name="submit1" value="Sign In" class="btnRegister">
               </div>
             </form>  
             <div><span id="error"></span></div>
@@ -93,17 +93,17 @@
 <script type="text/javascript" src="js/materialize.min.js"></script> 
 <script  type="text/javascript">
         var frmvalidator1 = new Validator("login-form");
-        frmvalidator1.EnableOnPageErrorDisplaySingleBox();
+       // frmvalidator1.EnableOnPageErrorDisplaySingleBox();
         frmvalidator1.EnableMsgsTogether();
         frmvalidator1.addValidation("teamName1","req","Please enter your Team Name");
         frmvalidator1.addValidation("teamName1","maxlen=20","Max length for Team is 20");
         frmvalidator1.addValidation("password1","req","Please enter your password");
         frmvalidator1.addValidation("password1","maxlen=40","max password length");
         var frmvalidator = new Validator("register");
-        //frmvalidator.EnableOnPageErrorDisplaySingleBox();
+       // frmvalidator.EnableOnPageErrorDisplaySingleBox();
         frmvalidator.EnableMsgsTogether();
         frmvalidator.addValidation("password","req","password is required");
-        frmvalidator.addValidation("password","maxlen=40","password cannot exceed 11");
+       frmvalidator.addValidation("password","maxlen=40","password cannot exceed 11");
         frmvalidator.addValidation("cpassword","eqelmnt=password","The confirmed password is not same as password");
         frmvalidator.addValidation("teamName","req","Please enter your Team Name");
         frmvalidator.addValidation("teamName","maxlen=20","Max length for Team is 20");
@@ -111,9 +111,10 @@
         frmvalidator.addValidation("userEmail","maxlen=40","emailid cannot exceed 40");
         frmvalidator.addValidation("userEmail","req","Please enter your email  id");
         frmvalidator.addValidation("userEmail","email","Please enter a valid emailid");
-        frmvalidator.addValidation("pNumber","maxlen=10");
+        frmvalidator.addValidation("pNumber","req","Please enter your number");
+        frmvalidator.addValidation("pNumber","maxlen=10","Please enter valid number");
         frmvalidator.addValidation("pNumber","numeric","Please enter valid number");
-        frmvalidator.addValidation("Terms","dontselectchk=y","Please select an option from 'Agree to Terms'");
+       frmvalidator.addValidation("Terms","dontselectchk=y","Please select an option from 'Agree to Terms'");
 </script>
 </body>
 </html>
