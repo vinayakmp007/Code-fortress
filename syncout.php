@@ -28,7 +28,7 @@ $qno=$_POST['qstnno'];
 $dat=$_POST['qry'];
 
 
-if(qry=="qs"){
+if($dat=="qs"){
 
 $qry="select quest from questions where tlevel=$level and qno=$qno"; 
 //echo $qry;
@@ -40,7 +40,7 @@ if(mysqli_num_rows($ret4)==1){                         //gets start time for tha
 
 $row = mysqli_fetch_assoc($ret4);
 $blb=$row['quest'];
-echo blb;
+echo $blb;
 die();
 }
 else die("ERR:14");
@@ -48,10 +48,10 @@ else die("ERR:14");
 
 
 }
-else if(qry=="dt"){
+else if($dat=="dt"){
 
 
-$qry="select dat from syncout where tlevel=$level and qno=$qno and teamid=$team"; 
+$qry="select dat from sync where tlevel=$level and qno=$qno and teamid=$team"; 
 //echo $qry;
 $ret4 =mysqli_query($conn, $qry);
 
@@ -61,7 +61,8 @@ if(mysqli_num_rows($ret4)==1){                         //gets start time for tha
 
 $row = mysqli_fetch_assoc($ret4);
 $blb=$row['dat'];
-echo blb;
+
+if(isset($blb))echo $blb;
 die();
 }
 else die("ERR:114");

@@ -113,6 +113,7 @@
                 time -= 1;
                 if (time % 30 == 0) gettime();
 		   if (time % 12 == 0) syncout();
+		if(time%10==0) syncin("dt");
             } 
            // else                timer_end(true);                      //putredirecthere
              }
@@ -136,7 +137,8 @@
             cache: false,
             beforeSend: function(){ /*$("#status").html('Evaluating'); */},
             success: function(data){
- 			if(data=="OK") {alert(data);}
+ 			alert(data);
+			if(data=="OK") {alert(data);}
             }
             }
 		);
@@ -144,6 +146,37 @@
             }
             return false;
             }
+		
+		   function syncin(qst)
+            {
+              var code=$("#codes").val();
+              var le =$('.active').attr('round');
+              var qno =$('.active').attr('level');
+              var ok = 'OK';
+	
+            //var dataString ='code='+code+'&OK='+ok+'&qstnno='+qno+'&level='+le+'&time='+timea;
+            var dat=jQuery.param({ qstnno:qno,level:le,qry:qst, OK:ok});
+            
+
+	    	alert("syncin scalled");
+            $.ajax({
+            type: "POST",
+            url: "./syncout.php",
+            data: dat,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            cache: false,
+            beforeSend: function(){ /*$("#status").html('Evaluating'); */},
+            success: function(data){
+ 		alert(data);	
+	  $("#codes").val(data);
+            }
+            }
+		);
+
+            
+            return false;
+            }
+
 
 
             
