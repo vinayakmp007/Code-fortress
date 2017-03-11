@@ -72,25 +72,9 @@ toutput BLOB NOT NULL,
 PRIMARY KEY (tlevel,qno,ncase)
 );
 
-CREATE TABLE levelcontrol
-(
-pcontrolid int NOT NULL AUTO_INCREMENT UNIQUE,
-levels  int NOT NULL UNIQUE,
-status    int NOT NULL,
-totaltime int(12),
-PRIMARY KEY (levels)
-);
-ALTER TABLE levelcontrol AUTO_INCREMENT=8000;
-INSERT INTO levelcontrol (levels,status,totaltime) values (" ",1,12334);
-
-/*status 
-
-00  disabled
-01  enabled
 
 
 
-*/
 
 
 
@@ -173,6 +157,14 @@ PRIMARY KEY (tlevel)
 /*no of question of this level can be obtained from questions table
 */
 
+/*status 
+
+00  disabled
+01  enabled
+
+
+
+*/
 
 
 
