@@ -39,7 +39,7 @@ $stmt = $conn->prepare("update sync set dat=? where tlevel=$level and teamid=$te
 $stmt->bind_param("b",$null);
 $stmt->send_long_data(0,$dat);
 
-$stmt->execute();                   //TODO          check whether error is empty
+$stmt->execute();                  
 
 
 if(!empty($stmt->error))die("ERR:152");
@@ -68,7 +68,7 @@ else die("ERR:14");
 
 
 
-echo mysqli_num_rows($ret4);
+//echo mysqli_num_rows($ret4);
 echo 'OK';
 die();
 }else die("ERR:85");

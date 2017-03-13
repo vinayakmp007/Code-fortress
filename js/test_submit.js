@@ -4,6 +4,8 @@
                var sub=0;
                var time=0010;
             $(document).ready(function() {
+            syncin("qs");
+            syncin("df");
             gettime();
             $('#submit').click(function()
             {

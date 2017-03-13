@@ -20,7 +20,7 @@ if($row['status']==0&&isset($_POST['OK'])&&isset($_SESSION['teamid'])){         
 $code=$_POST['code'];
 $qstno=$_POST['qstnno'];
 $time=$_POST['time'];
-$level=$_POST['level'];
+$level=$_POST['level'];                                                           //TODO check level is enabled or check whether or it should be present in levelstart
 $team=$_SESSION['teamid'];
 $lan=$_SESSION['lang'];
 
