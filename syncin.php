@@ -26,14 +26,14 @@ $qno=$_POST['qstnno'];
 $dat=$_POST['dat'];
 
 
-$qry="select * from sync where tlevel=$level and teamid=$team"; 
+$qry="select * from sync where tlevel=$level and teamid=$team and qno=$qno"; 
 $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
 if(!$ret4)die("ERR:13");
 if(mysqli_num_rows($ret4)==1){                        //if it contains then change
 
-
+//echo "sadaS5";
 $null=NULL;
 $stmt = $conn->prepare("update sync set dat=? where tlevel=$level and teamid=$team and qno=$qno");
 $stmt->bind_param("b",$null);
@@ -47,7 +47,7 @@ $stmt->close();
 }
 else if(mysqli_num_rows($ret4)==0){                                      //not added
 
-
+//echo "sadaS";
 
 $null=NULL;
 $stmt = $conn->prepare("insert into sync (tlevel,qno,teamid,dat) values(?,?,?,?) ");
@@ -68,7 +68,7 @@ else die("ERR:14");
 
 
 
-
+echo mysqli_num_rows($ret4);
 echo 'OK';
 die();
 }else die("ERR:85");

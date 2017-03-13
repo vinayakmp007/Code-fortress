@@ -28,7 +28,8 @@ $qno=$_POST['qstnno'];
 $dat=$_POST['qry'];
 
 
-if($dat=="qs"){
+if($dat=="qs")
+{
 
 $qry="select quest from questions where tlevel=$level and qno=$qno"; 
 //echo $qry;
@@ -36,13 +37,17 @@ $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
 if(!$ret4)die("ERR:13");
-if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
+if(mysqli_num_rows($ret4)==1){                         //gets question
 
 $row = mysqli_fetch_assoc($ret4);
 $blb=$row['quest'];
 echo $blb;
 die();
 }
+else if(mysqli_num_rows($ret4)==0){
+die();
+}
+
 else die("ERR:14");
 
 
@@ -57,7 +62,7 @@ $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
 if(!$ret4)die("ERR:113");
-if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
+if(mysqli_num_rows($ret4)==1){                         //gets gets stired data
 
 $row = mysqli_fetch_assoc($ret4);
 $blb=$row['dat'];
@@ -65,6 +70,8 @@ $blb=$row['dat'];
 if(isset($blb))echo $blb;
 die();
 }
+else if(mysqli_num_rows($ret4)==0){
+die();}
 else die("ERR:114");
 
 
@@ -78,7 +85,7 @@ $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
 if(!$ret4)die("ERR:113");
-if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
+if(mysqli_num_rows($ret4)==1){                         //gets default value
 
 $row = mysqli_fetch_assoc($ret4);
 $blb=$row['dvalues'];
@@ -86,6 +93,8 @@ $blb=$row['dvalues'];
 if(isset($blb))echo $blb;
 die();
 }
+else if(mysqli_num_rows($ret4)==0){
+die();}
 else die("ERR:114");
 
 

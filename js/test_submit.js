@@ -111,9 +111,9 @@
                     timer();
                 }, 1000);
                 time -= 1;
-                if (time % 30 == 0) {gettime();sub=0;}
-		   if (time % 12 == 0) {syncout();}
-		//if(time%10==0) syncin("qs");
+                if (time % 60 == 0) {gettime();sub=0;}
+		   if (time % 15 == 0) {syncout();}
+		//if(time%10==0) syncin("df");
             } 
            // else                timer_end(true);                      //putredirecthere
              }
@@ -168,10 +168,19 @@
             beforeSend: function(){ /*$("#status").html('Evaluating'); */},
             success: function(data){
  		
-		if(qst=="dt")
-	  $("#codes").val(data);
-		else if(qst=="qs")
+		if(qst=="dt")    {
+		      //data values
+		  $("#codes").val("");    
+		 data=data.trim();
+	  $("#codes").val(data);}
+		else if(qst=="qs")          //question 
 		{$(".codeHere").html(data); }
+		
+		else if(qst=="df"){          //default values for question
+		data=data.trim();
+		$("#codes").val(data);
+		
+		}
             }
             }
 		);
@@ -179,7 +188,83 @@
             
             return false;
             }
+            
+            
+            $('#reset').click(function()
+            {
+            //alert("reset");
+           syncin("df");                                //can add extra features here
+                     
+                
+            
+            });
 
 
 
+         $('.bottomli').click(function(){
+        syncout();
+        var le =$('.active').attr('round');
+        var qno =$('.active').attr('level');
+        //setTimeout(loadclick,600);
+        syncin2("dt",this);
+        syncin2("qs",this);
+        });
+
+
+       function loadclick(){                                      //is not called anywhere
+      
+       var l2=$('.active').attr('round');
+       var q2=$('.active').attr('level');
+       alert(q2);
+       syncin("qs");
+       syncin("dt");
+        }
+        
+        
+        
+        
+        
+           function syncin2(qst,pa)
+            {
+              var code=$("#codes").val();
+              var le =$(pa).attr('round');
+              var qno =$(pa).attr('level');
+              var ok = 'OK';
+	
+            //var dataString ='code='+code+'&OK='+ok+'&qstnno='+qno+'&level='+le+'&time='+timea;
+            var dat=jQuery.param({ qstnno:qno,level:le,qry:qst, OK:ok});
+            
+
+	    	//alert("syncin scalled");
+            $.ajax({
+            type: "POST",
+            url: "./syncout.php",
+            data: dat,
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            cache: false,
+            beforeSend: function(){ /*$("#status").html('Evaluating'); */},
+            success: function(data){
+ 		
+		if(qst=="dt")    {
+		      //data values
+		  $("#codes").val("");    
+		 data=data.trim();
+	  $("#codes").val(data);}
+		else if(qst=="qs")          //question 
+		{$(".codeHere").html(data); }
+		
+		else if(qst=="df"){          //default values for question
+		data=data.trim();
+		$("#codes").val(data);
+		
+		}
+            }
+            }
+		);
+
+            
+            return false;
+            }
+        
+       
             
