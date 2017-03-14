@@ -7,8 +7,6 @@ email varchar(40) NOT NULL UNIQUE,
 mno varchar(12) NOT NULL UNIQUE,
 pass varchar(12) NOT NULL ,
 lang varchar(10) NOT NULL,
-status int NOT NULL,
-lang varchar(10) NOT NULL , 
 status int NOT NULL DEFAULT 1,
 PRIMARY KEY (ID)
 );
@@ -33,10 +31,11 @@ CREATE TABLE questions
 testid int NOT NULL AUTO_INCREMENT UNIQUE,
 tlevel  int NOT NULL ,
 qno    int NOT NULL,
+lang varchar NOT NULL,
 quest BLOB NOT NULL,
 dvalues BLOB ,
 maxscore int NOT NULL,
-PRIMARY KEY (tlevel,qno)
+PRIMARY KEY (tlevel,qno,lang)
 );
 
 
@@ -178,8 +177,17 @@ PRIMARY KEY (teamid,tlevel,qno)
 ); 
 
 
+CREATE TABLE  defalt
+( 
+tlevel  int NOT NULL ,
+qno int NOT NULL, 
+lang int NOT NULL,
+lang varchar(10) NOT NULL,
+dat BLOB,
+PRIMARY KEY (teamid,tlevel,qno) 
+); 
 
-
+//the above table is not needed
 
 
 ALTER TABLE testcase AUTO_INCREMENT=5000; 

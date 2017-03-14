@@ -26,7 +26,7 @@ $level=$_POST['level'];
 $team=$_SESSION['teamid'];
 $qno=$_POST['qstnno'];
 $dat=$_POST['qry'];
-
+$lan=$_POST['lang'];
 
 if($dat=="qs")
 {
@@ -79,7 +79,7 @@ else die("ERR:114");
 else if($dat=="df"){                                                   //default values
 
 
-$qry="select dvalues from questions where tlevel=$level and qno=$qno"; 
+$qry="select dvalues from questions where tlevel=$level and qno=$qno and lang='$lan'";                          //TODO check the code here
 //echo $qry;
 $ret4 =mysqli_query($conn, $qry);
 

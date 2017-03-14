@@ -105,7 +105,7 @@ echo '<!DOCTYPE html>
         ';
 echo '<a href="#"><li class="topli">LEVEL:'.$level.'</li></a>';
 
-$qry="select count(*) from questions where tlevel=1"; 
+$qry="select count(*) from questions where tlevel=1 and lang='$lan'"; 
 //echo $qry;
 $ret4 =mysqli_query($conn, $qry);
 
