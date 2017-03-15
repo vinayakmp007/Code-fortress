@@ -142,7 +142,13 @@ else die("ERR:654");
 
 
 }
-
+else {header("Location :./rules.html");die("<script type=\"text/javascript\">
+    
+    
+              window.location = './rules.html';
+    
+    
+</script>");}
 }
 else die("ERR:146");                    //TODO add redirect here
 
@@ -222,8 +228,8 @@ The second line contains <span style="font-size: 100%; display: inline-block;" c
         </div>
       </div>
       <div class="rigSideBar center-align" style="padding: 15px 10px;">
-        <a id="reset" class="waves-effect waves-light btn red">RESET</a>
-        <a id = "submit" class="waves-effect waves-light btn green" >SUBMIT</a>
+        <a id="reset" class="waves-effect waves-light btn red" style="width:48%;padding:0px;">RESET</a>
+        <a id = "submit" class="waves-effect waves-light btn green" style="width:48%;padding:0px;">SUBMIT</a>
 	<p id="demo" style="display = null" attribute="code"></p>
        <div id="status" class="well">UNSUCCESSFUL</div>
       </div>

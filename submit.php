@@ -170,8 +170,8 @@ if(!empty($stmt->error)){
 $qry="select * from correct where tlevel=$level and qno=$qstno and teamid=$team";           //check wheither already submitted
 //echo $qry;
 $ret3 =mysqli_query($conn, $qry);
-if(mysqli_num_rows($ret3)==1)$status= 10;                                         
-else  die('ERR:10');   
+if(mysqli_num_rows($ret3)==1)$status=10;                                         
+else  die($stmt->error);   
 
 }
 

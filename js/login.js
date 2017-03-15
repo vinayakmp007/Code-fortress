@@ -19,11 +19,14 @@
                         },
                         success: function(data) {
                                 if(data=="YES") {
+                                
+                                window.location = './rules.html';
                                 }else if(data=="AL") {
                                         alert("User already logged in");
                                 }else if(data=="NO") {
                                         alert("Invalid user, please sign up");
                                 }else {
+                                alert("Try again");
                                 }
                         }
                    });

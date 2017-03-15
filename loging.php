@@ -44,8 +44,8 @@ $_SESSION ['password'] = $row['pass'];
 $_SESSION ['teamid'] = $row ['id'];
 $_SESSION ['lang'] = $row ['lang'];
 
-
-die('YES');
+echo 'YES';
+die();
 }
 
 

@@ -27,7 +27,8 @@
             {
            // alert(data);
             window.setTimeout(function () {
-                location.href = "./index.php";              //TODO changes to rules
+                
+                window.location = './rules.html';              //TODO changes to rules
             }, 0001);
             }
             else if(data=="AL")

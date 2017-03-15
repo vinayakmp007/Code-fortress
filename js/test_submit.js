@@ -5,7 +5,7 @@
                var time=0010;
             $(document).ready(function() {
             syncin("qs");
-            syncin("df");
+           // syncin("df");                                           the user should preess reset to load the deafult values
             gettime();
             $('#submit').click(function()
             {
@@ -86,7 +86,8 @@
             beforeSend: function(){  },
             success: function(data){
             //alert(data);
-            time=data;
+            if(data=="TIMEEND"){time=-10;}
+            else {time=data;}
             }
             });
             
@@ -117,7 +118,13 @@
 		   if (time % 15 == 0) {syncout();}
 		//if(time%10==0) syncin("df");
             } 
-           // else                timer_end(true);                      //putredirecthere
+           else          {    
+           
+           alert("You ran out of time!!");
+           window.location = './rules.html'; 
+           
+           
+           }                     //putredirecthere
              }
             function syncout()
             {

@@ -31,7 +31,7 @@ CREATE TABLE questions
 testid int NOT NULL AUTO_INCREMENT UNIQUE,
 tlevel  int NOT NULL ,
 qno    int NOT NULL,
-lang varchar NOT NULL,
+lang varchar(10) NOT NULL,
 quest BLOB NOT NULL,
 dvalues BLOB ,
 maxscore int NOT NULL,
@@ -42,7 +42,6 @@ PRIMARY KEY (tlevel,qno,lang)
 CREATE TABLE correct
 (
 subid int NOT NULL AUTO_INCREMENT UNIQUE,
-id int NOT NULL,
 tlevel  int NOT NULL,
 qno    int NOT NULL,
 teamid   int NOT NULL,
@@ -51,7 +50,7 @@ time int(12) NOT NULL,
 code BLOB,
 lang varchar(10),
 diff int NOT NULL,
-PRIMARY KEY (tlevel,qno)
+PRIMARY KEY (tlevel,qno,teamid)
 );
 
 

@@ -26,7 +26,7 @@ $level=$_POST['level'];
 $team=$_SESSION['teamid'];
 $qno=$_POST['qstnno'];
 $dat=$_POST['qry'];
-$lan=$_POST['lang'];
+$lan=$_SESSION['lang'];
 
 if($dat=="qs")
 {

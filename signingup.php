@@ -80,7 +80,7 @@ $reterr=shell_exec("python ".$signscript." ".$teamid." ".$userd." 2>&1");       
 
 }
 }
-header ( "Location: index.php" ) && die ();                         //redirect to index 
+header ( "Location: index.html" ) && die ();                         //redirect to index 
 
 ?>
 
