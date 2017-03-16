@@ -31,7 +31,7 @@ $lan=$_SESSION['lang'];
 if($dat=="qs")
 {
 
-$qry="select quest from questions where tlevel=$level and qno=$qno"; 
+$qry="select quest from questions where tlevel=$level and qno=$qno and lang='$lan'"; 
 //echo $qry;
 $ret4 =mysqli_query($conn, $qry);
 

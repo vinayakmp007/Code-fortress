@@ -11,5 +11,5 @@ package conur;
  */
 public interface credentials {
      String uname = "root";
-     String pass ="1234";
+     String pass ="voldermort";
 }

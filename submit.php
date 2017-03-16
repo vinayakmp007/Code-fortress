@@ -125,7 +125,7 @@ $row = mysqli_fetch_assoc($ret3);
 if($row['type']=='debug'){
 
 
-$qry="select dvalues from questions where tlevel=$level and qno=$qstno"; 
+$qry="select dvalues from questions where tlevel=$level and qno=$qstno and lang='$lan'"; 
 $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
@@ -147,7 +147,7 @@ $diff=shell_exec("diff   -N ".$defcode." ".$progcode." | grep '^>' | wc -l ");
 
 }
 
-else  die('ERR:multiple questions'); 
+else  die('ERR:221multiple questions'); 
 }
 //                                         put else here for 'coding'
 }                                        
@@ -194,7 +194,7 @@ $stmt->close();
 //else  die('ERR:10');                                      
 //}
 
-
+/*
 
 $qry="select type from levels where tlevel=$level";                                                                                                           
 $ret3 =mysqli_query($conn, $qry);
@@ -207,7 +207,7 @@ $row = mysqli_fetch_assoc($ret3);
 if($row['type']=='debug'){
 
 
-$qry="select dvalues from questions where tlevel=$level and qno=$qstno"; 
+$qry="select dvalues from questions where tlevel=$level and qno=$qstno and lang='$lan'"; 
 $ret4 =mysqli_query($conn, $qry);
 
 //echo $qry;
@@ -229,11 +229,11 @@ $diff=shell_exec("diff   -N ".$defcode." ".$progcode." | grep '^>' | wc -l ");
 
 }
 
-else  die('ERR:multiple questions'); 
+else  die('ERR:222multiple questions'); 
 }
 //                                         put else here for 'coding'
 }                                        
-else  die('ERR:7'); 
+else  die('ERR:7'); */
 
 }
 //echo $runscript2." ".$testcase."/".$level."/".$qstno." ".$prog."/".$level."/".$qstno;

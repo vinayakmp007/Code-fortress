@@ -4,7 +4,7 @@ input=$1'/input/';
 output=$1'/output/';
 out=$2'/output/';
 a=0;
-b=0;
+b=0;                                      #if no file are found in directory the program will be accepted
 #pro=$3;
 #echo $input $output $out;
 inlist=$(ls $output);
@@ -12,9 +12,9 @@ for m in $inlist
 do
 #echo "pro";
 #echo "$output$m" "$out$m";
-a=$(diff   -N "$output$m" "$out$m" | grep '^<' | wc -l );   #take this code to compare check wheuther to ignore the space
+a=$(diff   -N -Z "$output$m" "$out$m" | grep '^<' | wc -l );   #take this code to compare check wheuther to ignore the space
 let b+=$a;
-a=$(diff   -N "$output$m" "$out$m" | grep '^>' | wc -l );   #take this code to compare check wheuther to ignore the space
+a=$(diff   -N -Z "$output$m" "$out$m" | grep '^>' | wc -l );   #take this code to compare check wheuther to ignore the space
 let b+=$a;
 done
 echo $b;

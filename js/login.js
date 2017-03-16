@@ -2,7 +2,7 @@
 
 
         
-
+                $('#submit1').click(clicksin());
 
             function clicksin() {
                 var username=$("#teamname1").val();
@@ -22,7 +22,7 @@
                                 
                                 window.location = './rules.html';
                                 }else if(data=="AL") {
-                                        alert("User already logged in");
+                                        alert("A user has already logged in please signout and login again");
                                 }else if(data=="NO") {
                                         alert("Invalid user, please sign up");
                                 }else {
@@ -30,7 +30,7 @@
                                 }
                         }
                    });
-               return ;
+               return false;
                }
                return false;
            }

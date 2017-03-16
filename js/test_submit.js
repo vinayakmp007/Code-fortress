@@ -5,7 +5,7 @@
                var time=0010;
             $(document).ready(function() {
             syncin("qs");
-           // syncin("df");                                           the user should preess reset to load the deafult values
+           syncin("dt");                                        //   the user should preess reset to load the deafult values
             gettime();
             $('#submit').click(function()
             {

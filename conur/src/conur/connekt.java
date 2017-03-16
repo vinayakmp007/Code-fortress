@@ -25,7 +25,7 @@ public static PreparedStatement pstmt;
     Class.forName("com.mysql.jdbc.Driver");  
             //here sonoo is database name, root is username and password
         con = DriverManager.getConnection(  
-                    "jdbc:mysql://localhost:3306/u1",credentials.uname,credentials.pass); {
+                    "jdbc:mysql://localhost:3306/hp",credentials.uname,credentials.pass); {
                 //here sonoo is database name, root is username and password
                  stmt=con.createStatement(); 
                  

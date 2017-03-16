@@ -206,16 +206,16 @@ li.disabled:hover {
     width: 100%;
     height: 47px;
     border: 0px;
-    background: #F44336;
+    background: #00897b;
     color: #fff;
     font-weight: 500;
 }
 
 .btnRegister:active {
-    background: #EF5350;
+    background: #00695c;
 }
 
 .btnRegister:hover {
-    background: #E53935;
+    background: #00796b;
     box-shadow: 0px 0px 1px rgba(0,0,0,0.5)
 }
