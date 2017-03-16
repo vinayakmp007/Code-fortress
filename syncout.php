@@ -100,6 +100,26 @@ else die("ERR:114");
 
 }
 
+
+else if($dat=="st"){                                                   //default values
+
+
+$qry="select status from correct where tlevel=$level and qno=$qno and teamid=$team";                          //Any simple query
+//echo $qry;
+$ret4 =mysqli_query($conn, $qry);
+
+//echo $qry;
+if(!$ret4)die("ERR:313");
+if(mysqli_num_rows($ret4)==1){                         //gets default value
+
+die("PA");
+}
+else if(mysqli_num_rows($ret4)==0){
+die("UN");}
+else die("ERR:154");
+
+
+}
 else die("ERR:451");
 
 

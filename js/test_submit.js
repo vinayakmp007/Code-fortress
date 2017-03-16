@@ -190,6 +190,17 @@
 		$("#codes").val(data);
 		
 		}
+		
+		else if(qst=="st"){          //status values for question
+		if(data=="PA"){
+		$("#status").val("PASSED");
+		}
+		else if(data=="UN"){
+		$("#status").val("UNSUCCESFUL");
+		}
+		
+		
+		}
             }
             }
 		);
@@ -217,6 +228,7 @@
         //setTimeout(loadclick,600);
         syncin2("dt",this);
         syncin2("qs",this);
+        syncin2("st",this);
         });
 
 
@@ -265,6 +277,20 @@
 		else if(qst=="df"){          //default values for question
 		data=data.trim();
 		$("#codes").val(data);
+		
+		}
+		
+		else if(qst=="st"){          //status values for question
+		data=data.trim();
+		if(data=="PA"){
+		$("#status").html("PASSED");
+		}
+		else if(data=="UN"){
+		$("#status").html("UNSUCCESFUL");
+		}
+		else {
+		$("#status").html("");
+		}
 		
 		}
             }
