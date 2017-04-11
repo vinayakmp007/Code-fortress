@@ -1,6 +1,6 @@
 <?php
-require_once ("include/mysq.php");
-function test_input($data) {
+require_once ("include/mysq.php");                   //TODO Needs more functions here
+function test_input($data) {                             
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
