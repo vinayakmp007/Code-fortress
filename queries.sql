@@ -123,8 +123,8 @@ PRIMARY KEY (page)
 );
 
 /**
-status 0 disabled
-status 1 enabled
+status 0 enbaled
+status 1 disabled
 **/
 
 

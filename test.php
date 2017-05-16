@@ -1,70 +1,67 @@
-<?php 
+<?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require_once ("include/mysq.php");                           //conatins connection information
-require_once ("include/func.php"); 
-require_once ("include/sign2.php");
-require_once ("include/glob.php");
-session_start(); 
-if(!isset($conn)) die ("Unable to connect to mysql");                              //checks whether connection is possible
+require_once("include/mysq.php"); //conatins connection information
+require_once("include/func.php");
+require_once("include/sign2.php");
+require_once("include/glob.php");
+session_start();
+if (!isset($conn))
+    die("Unable to connect to mysql"); //checks whether connection is possible
 else {
-$retval =mysqli_query($conn, "select status from pagecontrol where page='test'");
-if(! $retval )
-{
-  die('ERROR:'.$retval->errorno);
-}
-if(mysqli_num_rows($retval)==1){                                                     //TODO also check if team is blocked
-$row = mysqli_fetch_assoc($retval);
-if($row['status']==0&&isset($_POST['OK'])&&isset($_SESSION['teamid'])){
-
-                                                                                       //check wheteherv 
-
-$level=$_POST['level'];                                                        // post  should contain level
-$team=$_SESSION['teamid'];
-$lan=$_SESSION['lang'];
-
-
-
-
-$retval =mysqli_query($conn, "select status from levels where tlevel=$level");
-if(! $retval )
-{
-  die('ERROR:'.$retval->errorno);
-}
-if(mysqli_num_rows($retval)==1){
-$row = mysqli_fetch_assoc($retval);
-
-if($row['status']==0)die("ERR:123");
-
-else if($row['status']==1){                                                                                  //just to be extra sure
-
-  
-$retval =mysqli_query($conn, "select startt from levelstart where tlevel=$level and teamid=$team");
-if(! $retval )
-{
-  die('ERROR:'.$retval->errorno);                                 //TODO redirection
-}
-
-if(mysqli_num_rows($retval)==1){                               // already started
-//$row = mysqli_fetch_assoc($retval);                         //we have nothing to do here(NOW)
-}
-else {
-$tim=time();
-
-
-$retval =mysqli_query($conn, "insert into levelstart(tlevel,teamid,startt) values($level,$team,$tim)");
-if(! $retval )
-{
-  die('ERROR:'.$retval->errorno);
-}
-
-}
-  
-                           
-                                                                            //TODO add the team to levelstart table
-
-
-echo '<!DOCTYPE html>
+    $retval = mysqli_query($conn, "select status from pagecontrol where page='test'");
+    if (!$retval) {
+        die('ERROR:' . $retval->errorno);
+    }
+    if (mysqli_num_rows($retval) == 1) { //TODO also check if team is blocked
+        $row = mysqli_fetch_assoc($retval);
+        if ($row['status'] == 0 && isset($_POST['OK']) && isset($_SESSION['teamid'])) {
+            
+            //check wheteherv 
+            
+            $level = $_POST['level']; // post  should contain level
+            $team  = $_SESSION['teamid'];
+            $lan   = $_SESSION['lang'];
+            
+            
+            
+            
+            $retval = mysqli_query($conn, "select status from levels where tlevel=$level");
+            if (!$retval) {
+                die('ERROR:' . $retval->errorno);
+            }
+            if (mysqli_num_rows($retval) == 1) {
+                $row = mysqli_fetch_assoc($retval);
+                
+                if ($row['status'] == 0)
+                    die("ERR:123");
+                
+                else if ($row['status'] == 1) { //just to be extra sure
+                    
+                    
+                    $retval = mysqli_query($conn, "select startt from levelstart where tlevel=$level and teamid=$team");
+                    if (!$retval) {
+                        die('ERROR:' . $retval->errorno); //TODO redirection
+                    }
+                    
+                    if (mysqli_num_rows($retval) == 1) { // already started
+                        //$row = mysqli_fetch_assoc($retval);                         //we have nothing to do here(NOW)
+                    } else {
+                        $tim = time();
+                        
+                        
+                        $retval = mysqli_query($conn, "insert into levelstart(tlevel,teamid,startt) values($level,$team,$tim)");
+                        if (!$retval) {
+                            die('ERROR:' . $retval->errorno);
+                        }
+                        
+                    }
+                    
+                    
+                    //TODO add the team to levelstart table
+                    
+                    
+                    echo '<!DOCTYPE html>
 <html>
 <head>
 <title>Conjura 17</title>
@@ -103,57 +100,61 @@ echo '<!DOCTYPE html>
       <ul class="topUl" style="padding-left: 30px;">
         <div class="bar">
         ';
-echo '<a href="#"><li class="topli">LEVEL:'.$level.'</li></a>';
-
-$qry="select count(*) from questions where tlevel=1 and lang='$lan'"; 
-//echo $qry;
-$ret4 =mysqli_query($conn, $qry);
-
-//echo $qry;
-if(!$ret4)die("ERR:133");                                //TODO replace dir with redirection or error page possible problem here
-
-if(mysqli_num_rows($ret4)==1){                         //gets start time for that event
-
-$row = mysqli_fetch_assoc($ret4);
-$count=$row['count(*)'];
-$m=0;
-$active="active";
-for($m=1;$m<=$count;$m++)
-{
-echo '<a href="#"><li class="bottomli '.$active.'" level="'.$m.'" round="'.$level.'" attr=>Question no : '.$m.'</li></a>';
-$active="";
-
-}
-
-}
-
-else die("ERR:142");
-
-
-
-
-
-}else die("ERR:54");
-
-
-}
-else die("ERR:654");
-
-
-
-}
-else {header("Location :./rules.html");die("<script type=\"text/javascript\">
+                    echo '<a href="#"><li class="topli">LEVEL:' . $level . '</li></a>';
+                    
+                    $qry  = "select count(*) from questions where tlevel=1 and lang='$lan'";
+                    //echo $qry;
+                    $ret4 = mysqli_query($conn, $qry);
+                    
+                    //echo $qry;
+                    if (!$ret4)
+                        die("ERR:133"); //TODO replace dir with redirection or error page possible problem here
+                    
+                    if (mysqli_num_rows($ret4) == 1) { //gets start time for that event
+                        
+                        $row    = mysqli_fetch_assoc($ret4);
+                        $count  = $row['count(*)'];
+                        $m      = 0;
+                        $active = "active";
+                        for ($m = 1; $m <= $count; $m++) {
+                            echo '<a href="#"><li class="bottomli ' . $active . '" level="' . $m . '" round="' . $level . '" attr=>Question no : ' . $m . '</li></a>';
+                            $active = "";
+                            
+                        }
+                        
+                    }
+                    
+                    else
+                        die("ERR:142");
+                    
+                    
+                    
+                    
+                    
+                } else
+                    die("ERR:54");
+                
+                
+            } else
+                die("ERR:654");
+            
+            
+            
+        } else {
+            header("Location :./rules.html");
+            die("<script type=\"text/javascript\">
     
     
               window.location = './rules.html';
     
     
-</script>");}
+</script>");
+        }
+    } else
+        die("ERR:146"); //TODO add redirect here
+    
+    
 }
-else die("ERR:146");                    //TODO add redirect here
-
-
-}                                        
 
 ?>
 
@@ -230,7 +231,7 @@ The second line contains <span style="font-size: 100%; display: inline-block;" c
       <div class="rigSideBar center-align" style="padding: 15px 10px;">
         <a id="reset" class="waves-effect waves-light btn red" style="width:48%;padding:0px;">RESET</a>
         <a id = "submit" class="waves-effect waves-light btn green" style="width:48%;padding:0px;">SUBMIT</a>
-	<p id="demo" style="display = null" attribute="code"></p>
+    <p id="demo" style="display = null" attribute="code"></p>
        <div id="status" class="well">UNSUCCESSFUL</div>
       </div>
     </div>
